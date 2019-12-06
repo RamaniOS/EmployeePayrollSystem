@@ -27,8 +27,6 @@ import com.cestar.employeepayrollsystem.R;
 
 public class NavDrawerActivity extends AppCompatActivity {
 
-    private AppBarConfiguration mAppBarConfiguration;
-
     NavigationView navigationView;
     DrawerLayout drawer;
     Toolbar toolbar;
@@ -40,20 +38,8 @@ public class NavDrawerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nav_drawer);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
-
-
-//        mAppBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.nav_home, R.id.nav_gallery, R.id.nav_list,
-//                R.id.nav_help, R.id.nav_logout, R.id.nav_send)
-//                .setDrawerLayout(drawer)
-//                .build();
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-//        NavigationUI.setupWithNavController(navigationView, navController);
-
         toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
@@ -80,7 +66,6 @@ public class NavDrawerActivity extends AppCompatActivity {
             drawer.closeDrawers();
         }
     }
-
 
 
     public void setUpNavigationDrawer() {
