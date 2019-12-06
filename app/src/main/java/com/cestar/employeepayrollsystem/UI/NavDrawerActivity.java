@@ -2,16 +2,19 @@ package com.cestar.employeepayrollsystem.UI;
 
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.cestar.employeepayrollsystem.UI.ui.home.AddEmpPayrollFragment;
+import com.cestar.employeepayrollsystem.UI.ui.home.HomeFragment;
 
-import android.view.View;
+import android.view.MenuItem;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.view.GravityCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
+import com.cestar.employeepayrollsystem.UI.ui.home.ListPayrollFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -26,45 +29,85 @@ public class NavDrawerActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
+    NavigationView navigationView;
+    DrawerLayout drawer;
+    Toolbar toolbar;
+    ActionBarDrawerToggle toggle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_drawer);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send)
-                .setDrawerLayout(drawer)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
+
+        drawer = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+
+
+//        mAppBarConfiguration = new AppBarConfiguration.Builder(
+//                R.id.nav_home, R.id.nav_gallery, R.id.nav_list,
+//                R.id.nav_help, R.id.nav_logout, R.id.nav_send)
+//                .setDrawerLayout(drawer)
+//                .build();
+//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+//        NavigationUI.setupWithNavController(navigationView, navController);
+
+        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        FragmentManager mFragMang = getSupportFragmentManager();
+        FragmentTransaction mFragTrans = mFragMang.beginTransaction();
+        mFragTrans.add(R.id.container, new HomeFragment());
+        mFragTrans.commit();
+
+        setUpNavigationDrawer();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.nav_drawer, menu);
         return true;
     }
 
     @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START))
+        {
+            drawer.closeDrawers();
+        }
+    }
+
+
+
+    public void setUpNavigationDrawer() {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+                FragmentManager mFragMang = getSupportFragmentManager();
+                FragmentTransaction mFragTrans = mFragMang.beginTransaction();
+
+                switch (menuItem.getItemId()){
+
+                    case R.id.nav_home:
+                        mFragTrans.replace(R.id.container, new HomeFragment());
+                        break;
+                    case R.id.nav_add_emp:
+                        mFragTrans.replace(R.id.container, new AddEmpPayrollFragment());
+                        break;
+                    case R.id.nav_list:
+                        mFragTrans.replace(R.id.container, new ListPayrollFragment());
+                        break;
+                }
+                mFragTrans.commit();
+                drawer.closeDrawers();
+
+                return  false;
+            }
+        });
     }
 }
