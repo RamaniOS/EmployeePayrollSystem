@@ -1,5 +1,6 @@
 package com.cestar.employeepayrollsystem.UI;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -16,6 +17,8 @@ public class DetailSplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_splash);
+        ActionBar bar = getSupportActionBar();
+        bar.hide();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

@@ -13,7 +13,7 @@
     </style>
 
     <!-- Detail Splash Screen theme. -->
-    <style name="DetailSplashTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="DetailSplashTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:windowBackground">@color/design_default_color_background</item>
     </style>
 
