@@ -16,13 +16,13 @@ public class DetailSplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_splash);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent mainIntent = new Intent(DetailSplashActivity.this, NavDrawerActivity.class);
-                DetailSplashActivity.this.startActivity(mainIntent);
-                DetailSplashActivity.this.finish();
-            }
-        }, SPLASH_DISPLAY_DURATION);
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                Intent mainIntent = new Intent(DetailSplashActivity.this, NavDrawerActivity.class);
+//                DetailSplashActivity.this.startActivity(mainIntent);
+//                DetailSplashActivity.this.finish();
+//            }
+//        }, SPLASH_DISPLAY_DURATION);
     }
 }
