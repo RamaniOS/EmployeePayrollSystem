@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.cestar.employeepayrollsystem.MainActivity;
 import com.cestar.employeepayrollsystem.R;
 
 public class DetailSplashActivity extends AppCompatActivity {
@@ -20,7 +19,7 @@ public class DetailSplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent mainIntent = new Intent(DetailSplashActivity.this, MainActivity.class);
+                Intent mainIntent = new Intent(DetailSplashActivity.this, NavDrawerActivity.class);
                 DetailSplashActivity.this.startActivity(mainIntent);
                 DetailSplashActivity.this.finish();
             }
