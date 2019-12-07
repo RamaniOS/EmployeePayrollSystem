@@ -16,10 +16,32 @@ import com.cestar.employeepayrollsystem.R;
 
 public class HomeFragment extends Fragment {
 
+    TextView dateTV;
+    TextView timeTV;
+    TextView empCountTV;
+
+
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         return root;
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        super.onViewCreated(view, savedInstanceState);
+
+        initSetup(view);
+    }
+
+    private void initSetup(View view){
+        dateTV = view.findViewById(R.id.dateId);
+    }
+
+//    private void setupUI(){
+//        taxdate_et.setText(currentDate());
+//    }
 }
