@@ -49,7 +49,7 @@ public class HomeFragment extends Fragment {
         dateTV.setText(objH.currentDate());
         timeTV.setText(objH.currentTime());
 
-        
+
 
     }
 

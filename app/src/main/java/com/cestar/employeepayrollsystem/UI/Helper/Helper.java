@@ -21,7 +21,7 @@ public class Helper {
         Date c = Calendar.getInstance().getTime();
         //System.out.println("Current time => " + c);
 
-        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat df = new SimpleDateFormat("hh:mm:ss a");
         String formattedDate = df.format(c);
 
         return formattedDate;

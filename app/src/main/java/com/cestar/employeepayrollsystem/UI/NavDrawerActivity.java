@@ -47,6 +47,7 @@ public class NavDrawerActivity extends AppCompatActivity {
         FragmentManager mFragMang = getSupportFragmentManager();
         FragmentTransaction mFragTrans = mFragMang.beginTransaction();
         mFragTrans.add(R.id.container, new HomeFragment());
+        getSupportActionBar().setTitle("Home");
         mFragTrans.commit();
 
         setUpNavigationDrawer();
@@ -80,12 +81,15 @@ public class NavDrawerActivity extends AppCompatActivity {
 
                     case R.id.nav_home:
                         mFragTrans.replace(R.id.container, new HomeFragment());
+                        getSupportActionBar().setTitle("Home");
                         break;
                     case R.id.nav_add_emp:
                         mFragTrans.replace(R.id.container, new AddEmpPayrollFragment());
+                        getSupportActionBar().setTitle("Add Employee Payroll");
                         break;
                     case R.id.nav_list:
                         mFragTrans.replace(R.id.container, new ListPayrollFragment());
+                        getSupportActionBar().setTitle("Payroll List");
                         break;
                 }
                 mFragTrans.commit();
