@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.cestar.employeepayrollsystem.R;
+import com.cestar.employeepayrollsystem.UI.Helper.Helper;
 
 public class HomeFragment extends Fragment {
 
@@ -34,11 +35,22 @@ public class HomeFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
+        //
         initSetup(view);
     }
 
     private void initSetup(View view){
+
         dateTV = view.findViewById(R.id.dateId);
+        timeTV = view.findViewById(R.id.timeId);
+        empCountTV = view.findViewById(R.id.empCount);
+
+        Helper objH = new Helper();
+        dateTV.setText(objH.currentDate());
+        timeTV.setText(objH.currentTime());
+
+        
+
     }
 
 //    private void setupUI(){
