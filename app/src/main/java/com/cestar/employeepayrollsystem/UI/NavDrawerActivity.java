@@ -1,7 +1,9 @@
 package com.cestar.employeepayrollsystem.UI;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.cestar.employeepayrollsystem.UI.Shared.UserManager;
 import com.cestar.employeepayrollsystem.UI.ui.home.AddEmpPayrollFragment;
 import com.cestar.employeepayrollsystem.UI.ui.home.HomeFragment;
 
@@ -23,6 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+
 import com.cestar.employeepayrollsystem.R;
 
 public class NavDrawerActivity extends AppCompatActivity {
@@ -61,8 +64,7 @@ public class NavDrawerActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START))
-        {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawers();
         }
     }
@@ -76,23 +78,38 @@ public class NavDrawerActivity extends AppCompatActivity {
                 FragmentManager mFragMang = getSupportFragmentManager();
                 FragmentTransaction mFragTrans = mFragMang.beginTransaction();
 
-                switch (menuItem.getItemId()){
-
+                switch (menuItem.getItemId()) {
                     case R.id.nav_home:
                         mFragTrans.replace(R.id.container, new HomeFragment());
+                        mFragTrans.commit();
+                        drawer.closeDrawers();
                         break;
                     case R.id.nav_add_emp:
                         mFragTrans.replace(R.id.container, new AddEmpPayrollFragment());
+                        mFragTrans.commit();
+                        drawer.closeDrawers();
                         break;
                     case R.id.nav_list:
                         mFragTrans.replace(R.id.container, new ListPayrollFragment());
+                        mFragTrans.commit();
+                        drawer.closeDrawers();
+                        break;
+                    case R.id.nav_help:
+                        mFragTrans.commit();
+                        drawer.closeDrawers();
+                        break;
+                    case R.id.nav_logout:
+                        performLogout();
                         break;
                 }
-                mFragTrans.commit();
-                drawer.closeDrawers();
-
-                return  false;
+                return false;
             }
         });
+    }
+
+    public void performLogout() {
+        UserManager.setLoggedIn(getApplicationContext(), false);
+        Intent intent = new Intent(NavDrawerActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 }
