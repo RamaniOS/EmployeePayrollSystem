@@ -83,24 +83,16 @@ public class NavDrawerActivity extends AppCompatActivity {
                     case R.id.nav_home:
                         mFragTrans.replace(R.id.container, new HomeFragment());
                         getSupportActionBar().setTitle("Home");
+                        drawer.closeDrawers();
                         break;
                     case R.id.nav_add_emp:
                         mFragTrans.replace(R.id.container, new AddEmpPayrollFragment());
                         getSupportActionBar().setTitle("Add Employee Payroll");
+                        drawer.closeDrawers();
                         break;
                     case R.id.nav_list:
                         mFragTrans.replace(R.id.container, new ListPayrollFragment());
                         getSupportActionBar().setTitle("Payroll List");
-                        mFragTrans.commit();
-                        drawer.closeDrawers();
-                        break;
-                    case R.id.nav_add_emp:
-                        mFragTrans.replace(R.id.container, new AddEmpPayrollFragment());
-                        mFragTrans.commit();
-                        drawer.closeDrawers();
-                        break;
-                    case R.id.nav_list:
-                        mFragTrans.replace(R.id.container, new ListPayrollFragment());
                         mFragTrans.commit();
                         drawer.closeDrawers();
                         break;
