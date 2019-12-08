@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Switch;
 
 import com.cestar.employeepayrollsystem.R;
+import com.cestar.employeepayrollsystem.UI.Shared.UserManager;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -84,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
         } else if (!pass.equals("s3cr3t") && pass.trim().contains("")) {
             showAlert("Password should be 's3cr3t' ");
         } else {
+            UserManager.setLoggedIn(getApplicationContext(),true);
             if(rememberMeSwitch.isChecked()) {
                 setPreference(context(), true);
                 setUserName(context(), user);
