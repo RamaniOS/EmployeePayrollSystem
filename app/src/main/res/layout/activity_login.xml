@@ -49,7 +49,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtEmail">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_user"
+                    android:id="@+id/txt_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:drawableLeft="@drawable/ic_action_user"
@@ -70,7 +70,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_pass"
+                    android:id="@+id/txt_dob"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:drawableLeft="@drawable/ic_action_pass"
@@ -94,7 +94,7 @@
 
             <!-- Calculate button -->
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_login"
+                android:id="@+id/btn_save"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:layout_marginTop="32dp"
