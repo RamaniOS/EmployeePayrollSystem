@@ -6,11 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 
@@ -25,11 +23,6 @@ public class LoginActivity extends AppCompatActivity {
     private Switch rememberMeSwitch;
     private Button loginButton;
 
-    private static final String PREFS_NAME = "LoginActivity";
-    private static final String REMEMBER_ME = "isRememberMe";
-    private static final String USER_NAME = "user_name";
-    private static final String PASSWORD = "password";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,12 +35,6 @@ public class LoginActivity extends AppCompatActivity {
         passwordTextView = findViewById(R.id.txt_pass);
         rememberMeSwitch = findViewById(R.id.btn_switch);
         loginButton = findViewById(R.id.btn_login);
-        rememberMeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                switchButtonChanged(buttonView, isChecked);
-            }
-        });
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,23 +45,19 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void checkIsRememberMe() {
-        boolean isRememberME = getPreference(context());
-        rememberMeSwitch.setChecked(isRememberME);
-        if(isRememberME) {
-            userNameTextView.setText(getUserName(context()));
-            passwordTextView.setText(getPassword(context()));
-        } else {
+        if(UserManager.getUserName(this).equals("null")) {
+            rememberMeSwitch.setChecked(false);
             userNameTextView.setText("");
             passwordTextView.setText("");
+        } else {
+            rememberMeSwitch.setChecked(true);
+            userNameTextView.setText(UserManager.getUserName(this));
+            passwordTextView.setText(UserManager.getPassword(this));
         }
     }
 
     private Context context() {
         return LoginActivity.this;
-    }
-
-    private void switchButtonChanged(CompoundButton buttonView, boolean isChecked) {
-        setPreference(context(), isChecked);
     }
 
     private void loginButtonClicked() {
@@ -87,51 +70,12 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             UserManager.setLoggedIn(getApplicationContext(),true);
             if(rememberMeSwitch.isChecked()) {
-                setPreference(context(), true);
-                setUserName(context(), user);
-                setPassword(context(), pass);
-            } else {
-                setPreference(context(), false);
+                UserManager.setUserName(getApplicationContext(), user);
+                UserManager.setPassword(getApplicationContext(), pass);
             }
             Intent intent = new Intent(context(), NavDrawerActivity.class);
             startActivity(intent);
         }
-    }
-
-    private static void setPreference(Context context, boolean value) {
-        SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putBoolean(REMEMBER_ME, value);
-        editor.commit();
-    }
-
-    private static boolean getPreference(Context context) {
-        SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        return settings.getBoolean(REMEMBER_ME, false);
-    }
-
-    private static void setUserName(Context context, String value) {
-        SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString(USER_NAME, value);
-        editor.commit();
-    }
-
-    private static String getUserName(Context context) {
-        SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        return settings.getString(USER_NAME, "");
-    }
-
-    private static void setPassword(Context context, String value) {
-        SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString(PASSWORD, value);
-        editor.commit();
-    }
-
-    private static String getPassword(Context context) {
-        SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        return settings.getString(PASSWORD, "");
     }
 
     private void showAlert(String message) {
