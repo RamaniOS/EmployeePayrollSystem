@@ -46,9 +46,9 @@ public class NavDrawerActivity extends AppCompatActivity {
         toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-        FragmentManager mFragMang = getSupportFragmentManager();
-        FragmentTransaction mFragTrans = mFragMang.beginTransaction();
+        // Added first fragment as Home
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction mFragTrans = manager.beginTransaction();
         mFragTrans.add(R.id.container, new HomeFragment());
         getSupportActionBar().setTitle("Home");
         mFragTrans.commit();
@@ -58,7 +58,6 @@ public class NavDrawerActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         getMenuInflater().inflate(R.menu.nav_drawer, menu);
         return true;
     }
@@ -67,27 +66,28 @@ public class NavDrawerActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawers();
+        } else {
+            finish();
         }
     }
-
 
     public void setUpNavigationDrawer() {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
-                FragmentManager mFragMang = getSupportFragmentManager();
-                FragmentTransaction mFragTrans = mFragMang.beginTransaction();
-
+                FragmentManager manager = getSupportFragmentManager();
+                FragmentTransaction mFragTrans = manager.beginTransaction();
                 switch (menuItem.getItemId()) {
                     case R.id.nav_home:
                         mFragTrans.replace(R.id.container, new HomeFragment());
                         getSupportActionBar().setTitle("Home");
+                        mFragTrans.commit();
                         drawer.closeDrawers();
                         break;
                     case R.id.nav_add_emp:
                         mFragTrans.replace(R.id.container, new AddEmpPayrollFragment());
                         getSupportActionBar().setTitle("Add Employee Payroll");
+                        mFragTrans.commit();
                         drawer.closeDrawers();
                         break;
                     case R.id.nav_list:
@@ -97,7 +97,6 @@ public class NavDrawerActivity extends AppCompatActivity {
                         drawer.closeDrawers();
                         break;
                     case R.id.nav_help:
-                        mFragTrans.commit();
                         drawer.closeDrawers();
                         break;
                     case R.id.nav_logout:
