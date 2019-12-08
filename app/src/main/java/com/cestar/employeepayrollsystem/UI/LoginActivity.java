@@ -31,10 +31,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        userNameTextView = findViewById(R.id.txt_user);
-        passwordTextView = findViewById(R.id.txt_pass);
+        userNameTextView = findViewById(R.id.txt_name);
+        passwordTextView = findViewById(R.id.txt_dob);
         rememberMeSwitch = findViewById(R.id.btn_switch);
-        loginButton = findViewById(R.id.btn_login);
+        loginButton = findViewById(R.id.btn_save);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -48,11 +48,6 @@ public class HomeFragment extends Fragment {
         dateTV.setText(objH.currentDate());
         timeTV.setText(objH.currentTime());
 
-        //dateTV.setHeight(5);
-        dateTV.setVisibility(view.GONE);
-
-
-
     }
 
 //    private void setupUI(){
