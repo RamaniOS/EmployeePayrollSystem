@@ -98,7 +98,7 @@ public class NavDrawerActivity extends AppCompatActivity {
                         drawer.closeDrawers();
                         break;
                     case R.id.nav_help:
-                        Helper.showAlert(NavDrawerActivity.this, "Email: user@employee.com");
+                        Helper.showAlert(NavDrawerActivity.this, "Email: " + UserManager.getUserName(getApplicationContext()));
                         drawer.closeDrawers();
                         break;
                     case R.id.nav_logout:
