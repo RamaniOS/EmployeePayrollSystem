@@ -3,6 +3,7 @@ package com.cestar.employeepayrollsystem.UI;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.cestar.employeepayrollsystem.UI.Helper.Helper;
 import com.cestar.employeepayrollsystem.UI.Shared.UserManager;
 import com.cestar.employeepayrollsystem.UI.ui.home.AddEmpPayrollFragment;
 import com.cestar.employeepayrollsystem.UI.ui.home.HomeFragment;
@@ -97,6 +98,7 @@ public class NavDrawerActivity extends AppCompatActivity {
                         drawer.closeDrawers();
                         break;
                     case R.id.nav_help:
+                        Helper.showAlert(NavDrawerActivity.this, "Email: user@employee.com");
                         drawer.closeDrawers();
                         break;
                     case R.id.nav_logout:
