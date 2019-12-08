@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.cestar.employeepayrollsystem.UI.Helper.Helper;
-import com.cestar.employeepayrollsystem.UI.Shared.UserManager;
+import com.cestar.employeepayrollsystem.UI.Shared.UserDataManager;
 import com.cestar.employeepayrollsystem.UI.ui.home.AddEmpPayrollFragment;
 import com.cestar.employeepayrollsystem.UI.ui.home.HomeFragment;
 
@@ -15,7 +15,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.ui.AppBarConfiguration;
 
 import com.cestar.employeepayrollsystem.UI.ui.home.ListPayrollFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -98,7 +97,7 @@ public class NavDrawerActivity extends AppCompatActivity {
                         drawer.closeDrawers();
                         break;
                     case R.id.nav_help:
-                        Helper.showAlert(NavDrawerActivity.this, "Email: " + UserManager.getUserName(getApplicationContext()));
+                        Helper.showAlert(NavDrawerActivity.this, "Email: " + UserDataManager.getUserName(getApplicationContext()));
                         drawer.closeDrawers();
                         break;
                     case R.id.nav_logout:
@@ -111,7 +110,7 @@ public class NavDrawerActivity extends AppCompatActivity {
     }
 
     public void performLogout() {
-        UserManager.setLoggedIn(getApplicationContext(), false);
+        UserDataManager.setLoggedIn(getApplicationContext(), false);
         Intent intent = new Intent(NavDrawerActivity.this, LoginActivity.class);
         startActivity(intent);
     }
