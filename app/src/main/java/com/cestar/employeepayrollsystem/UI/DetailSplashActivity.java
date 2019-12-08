@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 import com.cestar.employeepayrollsystem.R;
 import com.cestar.employeepayrollsystem.UI.Shared.UserManager;
@@ -25,6 +26,9 @@ public class DetailSplashActivity extends AppCompatActivity {
             public void run() {
                 Intent intent;
                 // IF LOGIN USER
+
+                Log.d("sff", "");
+
                 if (UserManager.getLoggedStatus(getApplicationContext())) {
                     intent = new Intent(DetailSplashActivity.this, NavDrawerActivity.class);
                 } else {
