@@ -4,6 +4,9 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -27,6 +30,8 @@ public class AddEmpPayrollFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
+    ConstraintLayout empType;
+
     private String mParam1;
     private String mParam2;
 
@@ -69,6 +74,14 @@ public class AddEmpPayrollFragment extends Fragment {
         // Inflate the layout for this fragment
 
         return inflater.inflate(R.layout.fragment_add_emp_payroll, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        empType = view.findViewById(R.id.partTimeView);
+       // empType.setVisibility(View.GONE);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
