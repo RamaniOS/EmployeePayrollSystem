@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-public class UserManager {
+public class UserDataManager {
 
     public static final String LOGGED_IN_PREF = "logged_in_status";
     public static final String USER_IN_PREF = "user_name";

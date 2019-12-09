@@ -9,7 +9,7 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.cestar.employeepayrollsystem.R;
-import com.cestar.employeepayrollsystem.UI.Shared.UserManager;
+import com.cestar.employeepayrollsystem.UI.Shared.UserDataManager;
 
 public class DetailSplashActivity extends AppCompatActivity {
 
@@ -29,7 +29,7 @@ public class DetailSplashActivity extends AppCompatActivity {
 
                 Log.d("sff", "");
 
-                if (UserManager.getLoggedStatus(getApplicationContext())) {
+                if (UserDataManager.getLoggedStatus(getApplicationContext())) {
                     intent = new Intent(DetailSplashActivity.this, NavDrawerActivity.class);
                 } else {
                     intent = new Intent(DetailSplashActivity.this, LoginActivity.class);

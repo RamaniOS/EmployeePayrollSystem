@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Switch;
 
 import com.cestar.employeepayrollsystem.R;
-import com.cestar.employeepayrollsystem.UI.Shared.UserManager;
+import com.cestar.employeepayrollsystem.UI.Shared.UserDataManager;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -45,14 +45,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void checkIsRememberMe() {
-        if(UserManager.getUserName(this).equals("null")) {
+        if(UserDataManager.getUserName(this).equals("null")) {
             rememberMeSwitch.setChecked(false);
             userNameTextView.setText("");
             passwordTextView.setText("");
         } else {
             rememberMeSwitch.setChecked(true);
-            userNameTextView.setText(UserManager.getUserName(this));
-            passwordTextView.setText(UserManager.getPassword(this));
+            userNameTextView.setText(UserDataManager.getUserName(this));
+            passwordTextView.setText(UserDataManager.getPassword(this));
         }
     }
 
@@ -68,10 +68,13 @@ public class LoginActivity extends AppCompatActivity {
         } else if (!pass.equals("s3cr3t") && pass.trim().contains("")) {
             showAlert("Password should be 's3cr3t' ");
         } else {
-            UserManager.setLoggedIn(getApplicationContext(),true);
+            UserDataManager.setLoggedIn(getApplicationContext(),true);
             if(rememberMeSwitch.isChecked()) {
-                UserManager.setUserName(getApplicationContext(), user);
-                UserManager.setPassword(getApplicationContext(), pass);
+                UserDataManager.setUserName(getApplicationContext(), user);
+                UserDataManager.setPassword(getApplicationContext(), pass);
+            } else {
+                UserDataManager.setUserName(getApplicationContext(), "null");
+                UserDataManager.setPassword(getApplicationContext(), "null");
             }
             Intent intent = new Intent(context(), NavDrawerActivity.class);
             startActivity(intent);
