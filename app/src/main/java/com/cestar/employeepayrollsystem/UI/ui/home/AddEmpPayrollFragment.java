@@ -10,10 +10,18 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.cestar.employeepayrollsystem.R;
+
+import static com.cestar.employeepayrollsystem.R.array.array_emp_type;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,7 +38,21 @@ public class AddEmpPayrollFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    ConstraintLayout empType;
+
+    ConstraintLayout partConst;
+    ConstraintLayout internConst;
+    ConstraintLayout fullConst;
+    EditText userNET;
+    EditText dobET;
+    Spinner spinnerEmp;
+    EditText rateET;
+    EditText hoursET;
+    Spinner partTimeSp;
+    EditText percOrFixET;
+    EditText schoolET;
+    EditText salaryET;
+    EditText bonusET;
+    Button saveBtn;
 
     private String mParam1;
     private String mParam2;
@@ -80,9 +102,92 @@ public class AddEmpPayrollFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        empType = view.findViewById(R.id.partTimeView);
-       // empType.setVisibility(View.GONE);
+        partConst = view.findViewById(R.id.partTimeView);
+        internConst = view.findViewById(R.id.internView);
+        fullConst = view.findViewById(R.id.fullTimeView);
+
+        spinnerEmp = view.findViewById(R.id.spinnerEmp);
+        partTimeSp = view.findViewById(R.id.part_time_sp);
+
+        userNET = view.findViewById(R.id.txt_name);
+        dobET = view.findViewById(R.id.txt_dob);
+        rateET = view.findViewById(R.id.txt_rate);
+        hoursET = view.findViewById(R.id.txt_hours_worked);
+        percOrFixET = view.findViewById(R.id.txt_PerOrFixed);
+        schoolET = view.findViewById(R.id.txt_SchoolName);
+        salaryET = view.findViewById(R.id.textInputSalary);
+        bonusET = view.findViewById(R.id.textInputBonus);
+        saveBtn = view.findViewById(R.id.save_btn);
+
+//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(array_emp_type));
+//        spinnerEmp.setAdapter(arrayAdapter);
+
+        spinnerEmp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                switch (position) {
+                    case 0:
+                        // by default
+                        iniTypeViews(view, 0);
+                        break;
+                    case 1:
+                        // by default
+                        iniTypeViews(view, 1);
+                        break;
+                    case 2:
+                        // by default
+                        iniTypeViews(view, 2);
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        // by default
+        iniTypeViews(view, 0);
     }
+
+    void iniTypeViews(View v,Integer type){
+
+        switch (type) {
+            case 0:
+                partConst.setVisibility(v.GONE);
+                internConst.setVisibility(v.GONE);
+                fullConst.setVisibility(v.VISIBLE);
+                break;
+            case 1:
+                partConst.setVisibility(v.VISIBLE);
+                internConst.setVisibility(v.GONE);
+                fullConst.setVisibility(v.GONE);
+                break;
+            case 2:
+                partConst.setVisibility(v.GONE);
+                internConst.setVisibility(v.VISIBLE);
+                fullConst.setVisibility(v.GONE);
+                break;
+        }
+
+    }
+
+    void iniPartTimeViews(View v,Integer type){
+
+        switch (type) {
+            case 0:
+                percOrFixET.setHint("Commision Percentage");
+                break;
+            case 1:
+                percOrFixET.setHint("Fixed Amount");
+                break;
+
+        }
+
+    }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
