@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.cestar.employeepayrollsystem.R;
 import com.cestar.employeepayrollsystem.UI.Helper.Helper;
+import com.cestar.employeepayrollsystem.UI.Shared.EmployeeManager;
 
 public class HomeFragment extends Fragment {
 
@@ -47,10 +48,7 @@ public class HomeFragment extends Fragment {
         Helper objH = new Helper();
         dateTV.setText(objH.currentDate());
         timeTV.setText(objH.currentTime());
-
+        String count = String.valueOf(EmployeeManager.totalCount());
+        empCountTV.setText(count);
     }
-
-//    private void setupUI(){
-//        taxdate_et.setText(currentDate());
-//    }
 }
