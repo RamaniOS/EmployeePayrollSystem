@@ -62,12 +62,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:drawablePadding="20dp"
-                        android:hint="Date of Birth"
-                        android:inputType="textPassword" />
+                        android:hint="Age"
+                        android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Spinner
                     android:id="@+id/spinnerEmp"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginStart="16dp"
@@ -112,6 +113,7 @@
 
                         <Spinner
                             android:id="@+id/part_time_sp"
+                            style="@style/Widget.AppCompat.Spinner.Underlined"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:layout_marginStart="16dp"
@@ -140,7 +142,7 @@
                                 android:layout_height="match_parent"
                                 android:drawablePadding="20dp"
                                 android:hint="Percentage/Fixed Amount"
-                                android:inputType="textEmailAddress" />
+                                android:inputType="numberDecimal" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -161,7 +163,7 @@
                                 android:layout_height="match_parent"
                                 android:drawablePadding="20dp"
                                 android:hint="Rate"
-                                android:inputType="textEmailAddress" />
+                                android:inputType="numberDecimal" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -182,7 +184,7 @@
                                 android:layout_height="match_parent"
                                 android:drawablePadding="20dp"
                                 android:hint="Hours"
-                                android:inputType="textEmailAddress" />
+                                android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -226,7 +228,7 @@
                                 android:layout_height="match_parent"
                                 android:drawablePadding="20dp"
                                 android:hint="School Name"
-                                android:inputType="textEmailAddress" />
+                                android:inputType="text" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
@@ -268,7 +270,7 @@
                                 android:layout_height="match_parent"
                                 android:drawablePadding="20dp"
                                 android:hint="Salary"
-                                android:inputType="textEmailAddress" />
+                                android:inputType="numberDecimal" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -290,7 +292,7 @@
                                 android:layout_height="match_parent"
                                 android:drawablePadding="20dp"
                                 android:hint="Bonus"
-                                android:inputType="textEmailAddress" />
+                                android:inputType="numberDecimal" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
