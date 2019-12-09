@@ -141,7 +141,6 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:drawablePadding="20dp"
-                                android:hint="Percentage/Fixed Amount"
                                 android:inputType="numberDecimal" />
                         </com.google.android.material.textfield.TextInputLayout>
 

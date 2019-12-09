@@ -51,16 +51,19 @@ public class AddEmpPayrollFragment extends Fragment {
     ConstraintLayout partConst;
     ConstraintLayout internConst;
     ConstraintLayout fullConst;
+
+    Spinner spinnerEmp;
+    Spinner partTimeSp;
+
     EditText userNET;
     EditText dobET;
-    Spinner spinnerEmp;
     EditText rateET;
     EditText hoursET;
-    Spinner partTimeSp;
     EditText percOrFixET;
     EditText schoolET;
     EditText salaryET;
     EditText bonusET;
+
     Button saveBtn;
 
     private String mParam1;
@@ -147,6 +150,29 @@ public class AddEmpPayrollFragment extends Fragment {
 //        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(array_emp_type));
 //        spinnerEmp.setAdapter(arrayAdapter);
 
+        partTimeSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                switch (position) {
+                    case 0:
+
+                        percOrFixET.setHint("Comission Percentage");
+                        break;
+                    case 1:
+
+                        percOrFixET.setHint("Fixed Amount");
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
         spinnerEmp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -184,19 +210,19 @@ public class AddEmpPayrollFragment extends Fragment {
 
             switch (type) {
                 case 0:
-                    employeeClass = new FullTimeEmployee("abc", 12, 2, 3);
+                    employeeClass = new FullTimeEmployee(userNET.getText().toString(), Integer.valueOf(dobET.getText().toString()), Float.valueOf(salaryET.getText().toString()), Float.valueOf(bonusET.getText().toString()));
                     break;
                 case 1:
                     String partTimeType = partTimeSp.getSelectedItem().toString();
                     if(partTimeType.equalsIgnoreCase("Commision")){
-                        employeeClass = new CommissionBasedPartTimeEmployee("",  23, 1, 5, 20);
+                        employeeClass = new CommissionBasedPartTimeEmployee(userNET.getText().toString(),  Integer.valueOf(dobET.getText().toString()), Float.valueOf(rateET.getText().toString()), Integer.valueOf(hoursET.getText().toString()), Float.valueOf(percOrFixET.getText().toString()));
                     }else{
-                        employeeClass = new FixedBasedPartTimeEmployee("",  23, 1, 23, 34);
+                        employeeClass = new FixedBasedPartTimeEmployee(userNET.getText().toString(),  Integer.valueOf(dobET.getText().toString()), Float.valueOf(rateET.getText().toString()), Integer.valueOf(hoursET.getText().toString()), Float.valueOf(percOrFixET.getText().toString()));
                     }
 
                     break;
                 default:
-                    employeeClass = new InternEmployee("",  12, "");
+                    employeeClass = new InternEmployee(userNET.getText().toString(), Integer.valueOf(dobET.getText().toString()), schoolET.getText().toString());
                     break;
 
             }
@@ -204,10 +230,7 @@ public class AddEmpPayrollFragment extends Fragment {
             Helper.showAlertCommon(getContext(), "Employee Added Succesfully.");
 
             EmployeeManager.addNewEmployee(employeeClass);
-        }else{
-
-        }
-
+        }else{}
 
 
     }
@@ -224,6 +247,7 @@ public class AddEmpPayrollFragment extends Fragment {
                 partConst.setVisibility(v.VISIBLE);
                 internConst.setVisibility(v.GONE);
                 fullConst.setVisibility(v.GONE);
+                iniPartTimeViews(v, 0);
                 break;
             case 2:
                 partConst.setVisibility(v.GONE);
