@@ -4,6 +4,8 @@ Created by: Nitin Jaswal
 package com.cestar.employeepayrollsystem.UI.Models.VehicleType;
 
 import android.os.Build;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import androidx.annotation.RequiresApi;
 
@@ -14,7 +16,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 
-public class MotorCycle extends Vehicle {
+public class MotorCycle extends Vehicle implements Parcelable {
 
     //-----------------------------------------------------------------------
 //    public enum FuelType {
@@ -36,6 +38,26 @@ public class MotorCycle extends Vehicle {
     }
 
     //-----------------------------------------------------------------------
+
+    protected MotorCycle(Parcel in) {
+        super(in);
+        price = in.readFloat();
+        seater = in.readInt();
+        fuelType = in.readString();
+    }
+
+    public static final Creator<MotorCycle> CREATOR = new Creator<MotorCycle>() {
+        @Override
+        public MotorCycle createFromParcel(Parcel in) {
+            return new MotorCycle(in);
+        }
+
+        @Override
+        public MotorCycle[] newArray(int size) {
+            return new MotorCycle[size];
+        }
+    };
+
     /** Getter - Setter*/
     public float getPrice() {
         return price;
@@ -103,4 +125,15 @@ public class MotorCycle extends Vehicle {
 
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeFloat(price);
+        dest.writeInt(seater);
+        dest.writeString(fuelType);
+    }
 }

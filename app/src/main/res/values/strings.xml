@@ -26,6 +26,27 @@
         <item>Fixed</item>
     </array>
 
+    <array name="array_veh_type">
+    <item>Car</item>
+    <item>Motor Cycle</item>
+    </array>
+
+    <array name="array_car_maker">
+        <item>Ford</item>
+        <item>Honda</item>
+        <item>Maruti</item>
+        <item>Audi</item>
+        <item>Tayota</item>
+    </array>
+
+    <array name="array_bike_maker">
+        <item>Bajaj</item>
+        <item>Hero Honda</item>
+        <item>Royal Enfield</item>
+        <item>Yahama</item>
+        <item>Ducati</item>
+    </array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
