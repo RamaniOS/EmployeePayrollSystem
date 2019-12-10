@@ -5,13 +5,18 @@
 package com.cestar.employeepayrollsystem.UI.Models.Vehicle;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.cestar.employeepayrollsystem.UI.Models.Other.IDispay;
 
 import java.time.LocalDate;
 
 
 /// This is the Vehicle class, containing the information of Employee's Vehicle.
-public abstract class Vehicle implements IDispay {
+
+
+public abstract class Vehicle implements IDispay, Parcelable {
 
     //-----------------------------------------------------------------------
 //    public enum VehicleType {
@@ -44,6 +49,46 @@ public abstract class Vehicle implements IDispay {
     }
 
     //-----------------------------------------------------------------------
+
+    protected Vehicle(Parcel in) {
+        vehicleType = in.readString();
+        manufacturer = in.readString();
+        plateNo = in.readString();
+        model = in.readString();
+        milage = in.readFloat();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(vehicleType);
+        dest.writeString(manufacturer);
+        dest.writeString(plateNo);
+        dest.writeString(model);
+        dest.writeFloat(milage);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Vehicle> CREATOR = new Creator<Vehicle>() {
+        @Override
+        public Vehicle createFromParcel(Parcel in) {
+            return new Vehicle(in) {
+                @Override
+                public void printMyDisplay() {
+
+                }
+            };
+        }
+
+        @Override
+        public Vehicle[] newArray(int size) {
+            return new Vehicle[size];
+        }
+    };
+
     /** Getter - Setter*/
     public String getVehicleType() {
         return vehicleType;

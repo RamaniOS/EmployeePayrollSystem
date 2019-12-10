@@ -9,12 +9,14 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -45,8 +47,6 @@
                         android:inputType="textEmailAddress" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-
-                <!--- Password -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayout2"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -64,9 +64,27 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:drawablePadding="20dp"
-                        android:hint="Date of Birth"
-                        android:inputType="textPassword" />
+                        android:hint="Age"
+                        android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <Spinner
+                    android:id="@+id/spinnerType"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:entries="@array/array_emp_type"
+                    android:layerType="hardware"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+
+
+                <!--- Password -->
 
                 <!-- Password -->
 
@@ -75,26 +93,6 @@
                 <!-- Password -->
 
                 <!-- Calculate button -->
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayout3"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/txt_emp_type"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:drawablePadding="20dp"
-                        android:hint="Employee Type"
-                        android:inputType="textPassword" />
-                </com.google.android.material.textfield.TextInputLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -113,7 +111,20 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
+
+                        <Spinner
+                            android:id="@+id/part_time_sp"
+                            style="@style/Widget.AppCompat.Spinner.Underlined"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:entries="@array/array_partTime_type"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textInputLayout5" />
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/textInputLayout7"
@@ -123,39 +134,16 @@
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="16dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textInputLayout6">
+                            app:layout_constraintTop_toBottomOf="@+id/part_time_sp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/txt_PerOrFixed"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:drawablePadding="20dp"
-                                android:hint="Percentage/Fixed Amount"
-                                android:inputType="textEmailAddress" />
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textInputLayout6"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginEnd="16dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/txt_PartTimeType"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:drawablePadding="20dp"
-                                android:hint="Part Time Type"
-                                android:inputType="textEmailAddress" />
+                                android:inputType="numberDecimal" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -176,7 +164,7 @@
                                 android:layout_height="match_parent"
                                 android:drawablePadding="20dp"
                                 android:hint="Rate"
-                                android:inputType="textEmailAddress" />
+                                android:inputType="numberDecimal" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -197,7 +185,7 @@
                                 android:layout_height="match_parent"
                                 android:drawablePadding="20dp"
                                 android:hint="Hours"
-                                android:inputType="textEmailAddress" />
+                                android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -241,7 +229,7 @@
                                 android:layout_height="match_parent"
                                 android:drawablePadding="20dp"
                                 android:hint="School Name"
-                                android:inputType="textEmailAddress" />
+                                android:inputType="text" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
@@ -283,7 +271,7 @@
                                 android:layout_height="match_parent"
                                 android:drawablePadding="20dp"
                                 android:hint="Salary"
-                                android:inputType="textEmailAddress" />
+                                android:inputType="numberDecimal" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -305,10 +293,51 @@
                                 android:layout_height="match_parent"
                                 android:drawablePadding="20dp"
                                 android:hint="Bonus"
-                                android:inputType="textEmailAddress" />
+                                android:inputType="numberDecimal" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Add Vehicle"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/addVBtn"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/addVBtn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@android:drawable/ic_input_add"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="0dp"
+                    android:layout_height="200dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -328,6 +357,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
