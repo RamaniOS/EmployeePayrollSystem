@@ -25,4 +25,8 @@ public class EmployeeManager {
     public static int totalCount() {
         return employees.size();
     }
+
+    public static List<EmployeeClass> fetchEmployees() {
+        return employees;
+    }
 }

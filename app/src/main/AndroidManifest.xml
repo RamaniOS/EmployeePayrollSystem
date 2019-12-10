@@ -6,12 +6,15 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:screenOrientation="portrait"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UI.LoginActivity"
-            android:label="Sign In"></activity>
+        <activity android:name=".UI.AddVehicleActivity"></activity>
+        <activity android:name=".UI.AddVehicle" />
+        <activity
+            android:name=".UI.LoginActivity"
+            android:label="Sign In" />
         <activity
             android:name=".UI.NavDrawerActivity"
             android:label="@string/title_activity_nav_drawer"

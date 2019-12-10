@@ -4,6 +4,8 @@ Created by: Nitin Jaswal
 package com.cestar.employeepayrollsystem.UI.Models.VehicleType;
 
 import android.os.Build;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import androidx.annotation.RequiresApi;
 
@@ -15,7 +17,7 @@ import java.text.NumberFormat;
 import java.time.LocalDate;
 
 /// This is the Car class inherited from parent class 'Vehicle', containing the information of vehicle type car.
-public class Car extends Vehicle {
+public class Car extends Vehicle implements Parcelable {
 
     //-----------------------------------------------------------------------
 //    public enum FuelType {
@@ -36,6 +38,26 @@ public class Car extends Vehicle {
     }
 
     //-----------------------------------------------------------------------
+
+    protected Car(Parcel in) {
+        super(in);
+        price = in.readFloat();
+        seater = in.readInt();
+        fuelType = in.readString();
+    }
+
+    public static final Creator<Car> CREATOR = new Creator<Car>() {
+        @Override
+        public Car createFromParcel(Parcel in) {
+            return new Car(in);
+        }
+
+        @Override
+        public Car[] newArray(int size) {
+            return new Car[size];
+        }
+    };
+
     /** Getter - Setter*/
     public float getPrice() {
         return price;
@@ -102,5 +124,17 @@ public class Car extends Vehicle {
             System.out.println("    - Milage Status:" + " " + super.statusOfMilage(milage));
         }
 
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeFloat(price);
+        dest.writeInt(seater);
+        dest.writeString(fuelType);
     }
 }

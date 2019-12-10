@@ -1,6 +1,8 @@
 package com.cestar.employeepayrollsystem.UI.ui.home;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -9,11 +11,29 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Spinner;
 
 import com.cestar.employeepayrollsystem.R;
+import com.cestar.employeepayrollsystem.UI.AddVehicleActivity;
+import com.cestar.employeepayrollsystem.UI.Helper.Helper;
+import com.cestar.employeepayrollsystem.UI.Models.Employee.EmployeeClass;
+import com.cestar.employeepayrollsystem.UI.Models.EmployeeType.FullTimeEmployee;
+import com.cestar.employeepayrollsystem.UI.Models.EmployeeType.InternEmployee;
+import com.cestar.employeepayrollsystem.UI.Models.PartTimeSalaryType.CommissionBasedPartTimeEmployee;
+import com.cestar.employeepayrollsystem.UI.Models.PartTimeSalaryType.FixedBasedPartTimeEmployee;
+import com.cestar.employeepayrollsystem.UI.Models.Vehicle.Vehicle;
+import com.cestar.employeepayrollsystem.UI.Shared.EmployeeManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,7 +50,27 @@ public class AddEmpPayrollFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    ConstraintLayout empType;
+
+    public static List<Vehicle>vechicles;
+    ConstraintLayout partConst;
+    ConstraintLayout internConst;
+    ConstraintLayout fullConst;
+
+    Spinner spinnerEmp;
+    Spinner partTimeSp;
+
+    EditText userNET;
+    EditText dobET;
+    EditText rateET;
+    EditText hoursET;
+    EditText percOrFixET;
+    EditText schoolET;
+    EditText salaryET;
+    EditText bonusET;
+
+    Button saveBtn;
+
+    ImageButton addVimgBtn;
 
     private String mParam1;
     private String mParam2;
@@ -73,6 +113,7 @@ public class AddEmpPayrollFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+        vechicles = new ArrayList<>();
         return inflater.inflate(R.layout.fragment_add_emp_payroll, container, false);
     }
 
@@ -80,9 +121,177 @@ public class AddEmpPayrollFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        empType = view.findViewById(R.id.partTimeView);
-       // empType.setVisibility(View.GONE);
+        partConst = view.findViewById(R.id.partTimeView);
+        internConst = view.findViewById(R.id.internView);
+        fullConst = view.findViewById(R.id.fullTimeView);
+
+        spinnerEmp = view.findViewById(R.id.spinnerType);
+        partTimeSp = view.findViewById(R.id.part_time_sp);
+
+        userNET = view.findViewById(R.id.txt_name);
+        dobET = view.findViewById(R.id.txt_dob);
+        rateET = view.findViewById(R.id.txt_rate);
+        hoursET = view.findViewById(R.id.txt_hours_worked);
+        percOrFixET = view.findViewById(R.id.txt_PerOrFixed);
+        schoolET = view.findViewById(R.id.txt_SchoolName);
+        salaryET = view.findViewById(R.id.textInputSalary);
+        bonusET = view.findViewById(R.id.textInputBonus);
+        saveBtn = view.findViewById(R.id.save_btn);
+
+
+        addVimgBtn = view.findViewById(R.id.addVBtn);
+        addVimgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(getActivity(), AddVehicleActivity.class);
+                startActivityForResult(i, 1);
+                ((Activity) getActivity()).overridePendingTransition(0, 0);
+            }
+        });
+
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String currItem = spinnerEmp.getSelectedItem().toString();
+                if(currItem.equalsIgnoreCase("Full Time")){
+                    saveClicked(v, 0);
+                }else if(currItem.equalsIgnoreCase("Part Time")){
+                    saveClicked(v, 1);
+                }else if(currItem.equalsIgnoreCase("Intern")){
+                    saveClicked(v, 2);
+                }
+
+            }
+        });
+
+
+//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(array_emp_type));
+//        spinnerEmp.setAdapter(arrayAdapter);
+
+        partTimeSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                switch (position) {
+                    case 0:
+
+                        percOrFixET.setHint("Comission Percentage");
+                        break;
+                    case 1:
+
+                        percOrFixET.setHint("Fixed Amount");
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        spinnerEmp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                switch (position) {
+                    case 0:
+                        // by default
+                        iniTypeViews(view, 0);
+                        break;
+                    case 1:
+                        // by default
+                        iniTypeViews(view, 1);
+                        break;
+                    case 2:
+                        // by default
+                        iniTypeViews(view, 2);
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        // by default
+        iniTypeViews(view, 0);
     }
+
+    void saveClicked(View v,Integer type){
+
+        if(checkValidation()){
+            EmployeeClass employeeClass;
+
+            switch (type) {
+                case 0:
+                    employeeClass = new FullTimeEmployee(userNET.getText().toString(), Integer.valueOf(dobET.getText().toString()), Float.valueOf(salaryET.getText().toString()), Float.valueOf(bonusET.getText().toString()));
+                    break;
+                case 1:
+                    String partTimeType = partTimeSp.getSelectedItem().toString();
+                    if(partTimeType.equalsIgnoreCase("Commision")){
+                        employeeClass = new CommissionBasedPartTimeEmployee(userNET.getText().toString(),  Integer.valueOf(dobET.getText().toString()), Float.valueOf(rateET.getText().toString()), Integer.valueOf(hoursET.getText().toString()), Float.valueOf(percOrFixET.getText().toString()));
+                    }else{
+                        employeeClass = new FixedBasedPartTimeEmployee(userNET.getText().toString(),  Integer.valueOf(dobET.getText().toString()), Float.valueOf(rateET.getText().toString()), Integer.valueOf(hoursET.getText().toString()), Float.valueOf(percOrFixET.getText().toString()));
+                    }
+
+                    break;
+                default:
+                    employeeClass = new InternEmployee(userNET.getText().toString(), Integer.valueOf(dobET.getText().toString()), schoolET.getText().toString());
+                    break;
+
+            }
+
+            Helper.showAlertCommon(getContext(), "Employee Added Succesfully.");
+            EmployeeManager.addNewEmployee(employeeClass);
+
+        }else{}
+
+
+    }
+
+    void iniTypeViews(View v,Integer type){
+
+        switch (type) {
+            case 0:
+                partConst.setVisibility(v.GONE);
+                internConst.setVisibility(v.GONE);
+                fullConst.setVisibility(v.VISIBLE);
+                break;
+            case 1:
+                partConst.setVisibility(v.VISIBLE);
+                internConst.setVisibility(v.GONE);
+                fullConst.setVisibility(v.GONE);
+                iniPartTimeViews(v, 0);
+                break;
+            case 2:
+                partConst.setVisibility(v.GONE);
+                internConst.setVisibility(v.VISIBLE);
+                fullConst.setVisibility(v.GONE);
+                break;
+        }
+
+    }
+
+    void iniPartTimeViews(View v,Integer type){
+
+        switch (type) {
+            case 0:
+                percOrFixET.setHint("Commision Percentage");
+                break;
+            case 1:
+                percOrFixET.setHint("Fixed Amount");
+                break;
+
+        }
+
+    }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -121,5 +330,75 @@ public class AddEmpPayrollFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    //
+    public Boolean checkValidation(){
+
+        if(userNET.getText().toString().isEmpty()){
+            Helper.showAlertCommon(getContext(), "User Name is required!");
+            return false;
+        }
+        else if(dobET.getText().toString().isEmpty()){
+            Helper.showAlertCommon(getContext(), "Age is required!");
+            return false;
+        }
+
+        String currItem = spinnerEmp.getSelectedItem().toString();
+        if(currItem.equalsIgnoreCase("Full Time")){
+            if(salaryET.getText().toString().isEmpty()){
+                Helper.showAlertCommon(getContext(), "Salary is required!");
+                return false;
+            }
+            else if(bonusET.getText().toString().isEmpty()){
+                Helper.showAlertCommon(getContext(), "Bonus is required!");
+                return false;
+            }else{
+                return true;
+            }
+        }else if(currItem.equalsIgnoreCase("Part Time")){
+            if(rateET.getText().toString().isEmpty()){
+                Helper.showAlertCommon(getContext(), "Rate is required!");
+                return false;
+            }
+            else if(hoursET.getText().toString().isEmpty()){
+                Helper.showAlertCommon(getContext(), "Hours is required!");
+                return false;
+            }
+            else if(percOrFixET.getText().toString().isEmpty()){
+                String strPartType = partTimeSp.getSelectedItem().toString();
+                if(strPartType.equalsIgnoreCase("Commision")){
+                    Helper.showAlertCommon(getContext(), "Commision Percentage is required!");
+                }else{
+                    Helper.showAlertCommon(getContext(), "Fixed Amount is required!");
+                }
+
+                return false;
+            }else{
+                return true;
+            }
+        }else if(currItem.equalsIgnoreCase("Intern")){
+            if(schoolET.getText().toString().isEmpty()){
+                Helper.showAlertCommon(getContext(), "School Name is required!");
+                return false;
+
+            }else{
+                return true;
+            }
+        }
+
+        return true;
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+
+                Vehicle vehicle = data.getParcelableExtra("result");
+            }
+        }
     }
 }
