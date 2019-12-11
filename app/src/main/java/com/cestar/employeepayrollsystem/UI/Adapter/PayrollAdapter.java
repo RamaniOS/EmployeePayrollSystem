@@ -40,7 +40,7 @@ public class PayrollAdapter extends RecyclerView.Adapter<PayrollAdapter.PayrollV
     public void onBindViewHolder(@NonNull final PayrollViewHolder holder, int position) {
         final EmployeeClass employee = employees.get(position);
         holder.txtName.setText("Full Name: " + employee.getName());
-        holder.txtEType.setText("Employee Type: " + "Full Time");
+        holder.txtEType.setText("Employee Type: " + employee.type);
         holder.txtTotalEarning.setText("Birth Year: " + String.valueOf(employee.getBirthYear()));
         holder.txtHasVehicle.setText(employee.getVehicleList().size() > 0 ? "Employee has Vehicle." : "Employee has no Vehicle.");
     }
