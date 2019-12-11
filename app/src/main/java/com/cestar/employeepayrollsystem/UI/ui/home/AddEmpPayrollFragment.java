@@ -126,6 +126,18 @@ public class AddEmpPayrollFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_add_emp_payroll, container, false);
     }
 
+    void resetEditTexts(){
+        userNET.setText("");
+        dobET.setText("");
+        rateET.setText("");
+        hoursET.setText("");
+        percOrFixET.setText("");
+        schoolET.setText("");
+        salaryET.setText("");
+        bonusET.setText("");
+
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -284,6 +296,9 @@ public class AddEmpPayrollFragment extends Fragment {
             }
             Helper.showAlertCommon(getContext(), "Employee Added Succesfully.");
             EmployeeManager.addNewEmployee(employeeClass);
+
+            //
+            resetEditTexts();
 
         }else{}
 
