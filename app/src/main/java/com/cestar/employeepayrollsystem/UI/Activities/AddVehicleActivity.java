@@ -1,4 +1,4 @@
-package com.cestar.employeepayrollsystem.UI;
+package com.cestar.employeepayrollsystem.UI.Activities;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,6 +47,8 @@ public class AddVehicleActivity extends AppCompatActivity {
     }
 
     public void setupIni() {
+
+        getSupportActionBar().setTitle("Add Vehicle");
 
         spinnerType = findViewById(R.id.spinnerType);
         spinnerMaker = findViewById(R.id.spinnerMaker);

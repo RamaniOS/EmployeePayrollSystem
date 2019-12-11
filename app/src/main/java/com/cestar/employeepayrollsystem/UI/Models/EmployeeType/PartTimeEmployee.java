@@ -8,12 +8,18 @@ import androidx.annotation.RequiresApi;
 
 import com.cestar.employeepayrollsystem.UI.Models.Employee.EmployeeClass;
 import com.cestar.employeepayrollsystem.UI.Models.MISC.NameLengthException;
+import com.cestar.employeepayrollsystem.UI.Models.PartTimeSalaryType.CommissionBasedPartTimeEmployee;
+import com.cestar.employeepayrollsystem.UI.Models.PartTimeSalaryType.FixedBasedPartTimeEmployee;
+import com.cestar.employeepayrollsystem.UI.Models.VehicleType.Car;
+import com.cestar.employeepayrollsystem.UI.Models.VehicleType.MotorCycle;
 
 //Created by Ramanpreet Singh
 public abstract class PartTimeEmployee extends EmployeeClass implements Parcelable {
 
     private float rate;
     private int hoursWorked;
+    public CommissionBasedPartTimeEmployee commission;
+    public FixedBasedPartTimeEmployee fixed;
 
     public PartTimeEmployee()
     {
@@ -23,6 +29,8 @@ public abstract class PartTimeEmployee extends EmployeeClass implements Parcelab
         super(in);
         rate = in.readFloat();
         hoursWorked = in.readInt();
+        commission = in.readParcelable(CommissionBasedPartTimeEmployee.class.getClassLoader());
+        fixed = in.readParcelable(FixedBasedPartTimeEmployee.class.getClassLoader());
     }
 
     @Override
@@ -30,6 +38,8 @@ public abstract class PartTimeEmployee extends EmployeeClass implements Parcelab
         super.writeToParcel(dest, flags);
         dest.writeFloat(rate);
         dest.writeInt(hoursWorked);
+        dest.writeParcelable(commission, flags);
+        dest.writeParcelable(fixed, flags);
     }
 
     @Override

@@ -10,20 +10,22 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UI.AddVehicleActivity"></activity>
+        <activity android:name=".UI.Activities.VehicleDetailActivity"></activity>
+        <activity android:name=".UI.Activities.EmployeeDetailActivity" />
+        <activity android:name=".UI.Activities.AddVehicleActivity" />
         <activity android:name=".UI.AddVehicle" />
         <activity
-            android:name=".UI.LoginActivity"
+            android:name=".UI.Activities.LoginActivity"
             android:label="Sign In" />
         <activity
-            android:name=".UI.NavDrawerActivity"
+            android:name=".UI.Activities.NavDrawerActivity"
             android:label="@string/title_activity_nav_drawer"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".UI.DetailSplashActivity"
+            android:name=".UI.Activities.DetailSplashActivity"
             android:theme="@style/DetailSplashTheme" />
         <activity
-            android:name=".UI.SplashActivity"
+            android:name=".UI.Activities.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

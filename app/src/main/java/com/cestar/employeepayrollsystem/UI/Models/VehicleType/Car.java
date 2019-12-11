@@ -46,6 +46,14 @@ public class Car extends Vehicle implements Parcelable {
         fuelType = in.readString();
     }
 
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest, flags);
+        dest.writeFloat(price);
+        dest.writeInt(seater);
+        dest.writeString(fuelType);
+    }
+
     public static final Creator<Car> CREATOR = new Creator<Car>() {
         @Override
         public Car createFromParcel(Parcel in) {
@@ -114,11 +122,5 @@ public class Car extends Vehicle implements Parcelable {
         return 0;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        super.writeToParcel(dest, flags);
-        dest.writeFloat(price);
-        dest.writeInt(seater);
-        dest.writeString(fuelType);
-    }
+
 }
