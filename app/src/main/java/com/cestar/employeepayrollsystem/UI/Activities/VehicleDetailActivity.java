@@ -16,7 +16,13 @@ import android.widget.Spinner;
 import com.cestar.employeepayrollsystem.R;
 import com.cestar.employeepayrollsystem.UI.Adapter.VehicleAdapter;
 import com.cestar.employeepayrollsystem.UI.Models.Employee.EmployeeClass;
+import com.cestar.employeepayrollsystem.UI.Models.EmployeeType.FullTimeEmployee;
+import com.cestar.employeepayrollsystem.UI.Models.EmployeeType.InternEmployee;
+import com.cestar.employeepayrollsystem.UI.Models.PartTimeSalaryType.CommissionBasedPartTimeEmployee;
+import com.cestar.employeepayrollsystem.UI.Models.PartTimeSalaryType.FixedBasedPartTimeEmployee;
 import com.cestar.employeepayrollsystem.UI.Models.Vehicle.Vehicle;
+import com.cestar.employeepayrollsystem.UI.Models.VehicleType.Car;
+import com.cestar.employeepayrollsystem.UI.Models.VehicleType.MotorCycle;
 
 public class VehicleDetailActivity extends AppCompatActivity {
 
@@ -53,17 +59,21 @@ public class VehicleDetailActivity extends AppCompatActivity {
 
         // set titles...
         Intent intent = getIntent();
-        Vehicle vehObj = intent.getParcelableExtra("vehDetail");
+        Object vehObj = intent.getParcelableExtra("vehDetail");
 
-//        if(vehObj.getVehicleType().equalsIgnoreCase("Car")){
-//            spinnerType.setSelection(0);
-//        }else{
-//            spinnerType.setSelection(1);
-//        }
-//
-//        txt_plate.setText(vehObj.getPlateNo());
-       // txt_price.setText(vehObj.getVehicleType().getPrice());
-       // txt_price.setText(vehObj.getVehicleType().getSeater());
+        if (vehObj instanceof Car) {
+            Car car = (Car) vehObj;
+            spinnerType.setSelection(0);
+            txt_plate.setText(car.getPlateNo());
+            txt_price.setText(String.valueOf(car.getPrice()));
+            txt_seater.setText(String.valueOf(car.getSeater()));
+        } else if (vehObj instanceof MotorCycle) {
+            MotorCycle motorCycle = (MotorCycle) vehObj;
+            spinnerType.setSelection(1);
+            txt_plate.setText(motorCycle.getPlateNo());
+            txt_price.setText(String.valueOf(motorCycle.getPrice()));
+            txt_seater.setText(String.valueOf(motorCycle.getSeater()));
+        }
     }
 
     @Override
