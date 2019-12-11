@@ -20,6 +20,7 @@ import android.widget.Switch;
 import com.cestar.employeepayrollsystem.R;
 import com.cestar.employeepayrollsystem.UI.Adapter.VehicleAdapter;
 import com.cestar.employeepayrollsystem.UI.Models.Employee.EmployeeClass;
+import com.cestar.employeepayrollsystem.UI.Models.EmployeeType.FullTimeEmployee;
 import com.cestar.employeepayrollsystem.UI.Models.Vehicle.Vehicle;
 
 import java.util.ArrayList;
@@ -84,27 +85,27 @@ public class EmployeeDetailActivity extends AppCompatActivity {
         bonusET = findViewById(R.id.textInputBonus);
 
         Intent intent = getIntent();
-        EmployeeClass employee = intent.getParcelableExtra("empDetail");
+        FullTimeEmployee employee = intent.getParcelableExtra("empDetail");
 
         setUpViews(employee);
 
     }
 
-    void setUpViews(EmployeeClass employee) {
-
+    void setUpViews(FullTimeEmployee employee) {
 
         userNET.setText(employee.getName());
-        dobET.setText("Age: " + String.valueOf(employee.getAge()));
+        dobET.setText(String.valueOf(employee.getAge()));
 
-//
-//        if(employee.type.equalsIgnoreCase("Full Time")){
-//              spinnerEmp.setSelection(0);
-//              salaryET.setText(employee.fullTime.getSalary());
-//              bonusET.setText(employee.fullTime.getBonus());
-//              partConst.setVisibility(View.GONE);
-//             internConst.setVisibility(View.GONE);
-//             fullConst.setVisibility(View.VISIBLE);
-//        }else if(employee.type.equalsIgnoreCase("Part Time")){
+
+        if(employee.type.equalsIgnoreCase("Full Time")){
+              spinnerEmp.setSelection(0);
+              salaryET.setText(String.valueOf(employee.getSalary()));
+              bonusET.setText(String.valueOf(employee.getBonus()));
+              partConst.setVisibility(View.GONE);
+             internConst.setVisibility(View.GONE);
+             fullConst.setVisibility(View.VISIBLE);
+        }
+//        else if(employee.type.equalsIgnoreCase("Part Time")){
 //              spinnerEmp.setSelection(1);
 //              rateET.setText(employee.partTime.getRate());
 //              hoursET.setText(employee.partTime.getHours());
