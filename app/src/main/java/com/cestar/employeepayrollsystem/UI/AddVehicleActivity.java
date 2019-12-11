@@ -62,14 +62,13 @@ public class AddVehicleActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(checkValidation()){
-                    LocalDate insuranceDate = LocalDate.parse("2019-08-09");
 
                     Vehicle vehObj;
                     String strType = spinnerType.getSelectedItem().toString();
                     if(strType.equalsIgnoreCase("Car")){
-                        vehObj = new Car(strType, spinnerMaker.getSelectedItem().toString(), txt_plate.getText().toString(), "MMM", insuranceDate, 10, Float.valueOf(txt_price.getText().toString()), 1, "");
+                        vehObj = new Car(strType, spinnerMaker.getSelectedItem().toString(), txt_plate.getText().toString(), "MMM", "2019-08-09", 10, Float.valueOf(txt_price.getText().toString()), 1, "");
                     }else{
-                        vehObj = new MotorCycle(strType, spinnerMaker.getSelectedItem().toString(), txt_plate.getText().toString(), "MMM", insuranceDate, 10, Float.valueOf(txt_price.getText().toString()), 1, "");
+                        vehObj = new MotorCycle(strType, spinnerMaker.getSelectedItem().toString(), txt_plate.getText().toString(), "MMM", "2019-08-09", 10, Float.valueOf(txt_price.getText().toString()), 1, "");
 
                     }
 

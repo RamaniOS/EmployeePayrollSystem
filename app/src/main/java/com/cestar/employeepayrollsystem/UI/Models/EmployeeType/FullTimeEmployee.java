@@ -1,6 +1,8 @@
 package com.cestar.employeepayrollsystem.UI.Models.EmployeeType;
 
 import android.os.Build;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import androidx.annotation.RequiresApi;
 
@@ -8,10 +10,38 @@ import com.cestar.employeepayrollsystem.UI.Models.Employee.EmployeeClass;
 import com.cestar.employeepayrollsystem.UI.Models.MISC.NameLengthException;
 
 //Created by Ramanpreet Singh
-public class FullTimeEmployee extends EmployeeClass {
+public class FullTimeEmployee extends EmployeeClass implements Parcelable {
 
     private float salary;
     private float bonus;
+
+    protected FullTimeEmployee(Parcel in) {
+        salary = in.readFloat();
+        bonus = in.readFloat();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeFloat(salary);
+        dest.writeFloat(bonus);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<FullTimeEmployee> CREATOR = new Creator<FullTimeEmployee>() {
+        @Override
+        public FullTimeEmployee createFromParcel(Parcel in) {
+            return new FullTimeEmployee(in);
+        }
+
+        @Override
+        public FullTimeEmployee[] newArray(int size) {
+            return new FullTimeEmployee[size];
+        }
+    };
 
     private float getSalary()
     {

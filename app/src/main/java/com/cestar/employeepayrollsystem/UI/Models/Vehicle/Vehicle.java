@@ -28,7 +28,7 @@ public abstract class Vehicle implements IDispay, Parcelable {
     protected String manufacturer;
     protected String plateNo;
     protected String model;
-    protected LocalDate insuranceDate;
+    protected String insuranceDate;
     protected float milage;
 
     //-----------------------------------------------------------------------
@@ -39,7 +39,7 @@ public abstract class Vehicle implements IDispay, Parcelable {
 
     /** Constructor*/
 
-    public Vehicle(String vehicleType, String manufacturer, String plateNo, String model, LocalDate insuranceDate, float milage) {
+    public Vehicle(String vehicleType, String manufacturer, String plateNo, String model, String insuranceDate, float milage) {
         this.vehicleType = vehicleType;
         this.manufacturer = manufacturer;
         this.plateNo = plateNo;
@@ -56,6 +56,7 @@ public abstract class Vehicle implements IDispay, Parcelable {
         plateNo = in.readString();
         model = in.readString();
         milage = in.readFloat();
+        insuranceDate = in.readString();
     }
 
     @Override
@@ -65,29 +66,8 @@ public abstract class Vehicle implements IDispay, Parcelable {
         dest.writeString(plateNo);
         dest.writeString(model);
         dest.writeFloat(milage);
+        dest.writeString(insuranceDate);
     }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<Vehicle> CREATOR = new Creator<Vehicle>() {
-        @Override
-        public Vehicle createFromParcel(Parcel in) {
-            return new Vehicle(in) {
-                @Override
-                public void printMyDisplay() {
-
-                }
-            };
-        }
-
-        @Override
-        public Vehicle[] newArray(int size) {
-            return new Vehicle[size];
-        }
-    };
 
     /** Getter - Setter*/
     public String getVehicleType() {
@@ -122,11 +102,11 @@ public abstract class Vehicle implements IDispay, Parcelable {
         this.model = model;
     }
 
-    public LocalDate getInsuranceDate() {
+    public String getInsuranceDate() {
         return insuranceDate;
     }
 
-    public void setInsuranceDate(LocalDate insuranceDate) {
+    public void setInsuranceDate(String insuranceDate) {
         this.insuranceDate = insuranceDate;
     }
 
