@@ -42,7 +42,7 @@ public class Helper {
 
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context, R.style.AlertDialogTheme)
                 .setTitle("You want Help?")
-                .setMessage(message)
+                .setMessage(message +  "\n \n" + "Phone no. : 123456789")
                 .setPositiveButton("GOT IT", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
