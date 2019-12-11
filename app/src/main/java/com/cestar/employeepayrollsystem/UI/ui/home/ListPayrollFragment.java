@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,8 +16,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cestar.employeepayrollsystem.R;
+import com.cestar.employeepayrollsystem.UI.Adapter.PayrollAdapter;
+import com.cestar.employeepayrollsystem.UI.Adapter.VehicleAdapter;
 import com.cestar.employeepayrollsystem.UI.Models.Employee.EmployeeClass;
+import com.cestar.employeepayrollsystem.UI.Models.Vehicle.Vehicle;
 import com.cestar.employeepayrollsystem.UI.Shared.EmployeeManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +38,9 @@ public class ListPayrollFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private RecyclerView recyclerViewDetail;
+    private PayrollAdapter payrollAdapter;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -78,9 +89,15 @@ public class ListPayrollFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initRecyclerView(view);
+    }
 
-        EmployeeClass empClass = EmployeeManager.fetchEmployees().get(0);
-        Log.i(empClass.getName(), " NNNNNitin:");
+    private void initRecyclerView(View view) {
+        recyclerViewDetail = view.findViewById(R.id.recyclePayroll);
+        payrollAdapter = new PayrollAdapter(EmployeeManager.fetchEmployees());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerViewDetail.setLayoutManager(layoutManager);
+        recyclerViewDetail.setAdapter(payrollAdapter);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

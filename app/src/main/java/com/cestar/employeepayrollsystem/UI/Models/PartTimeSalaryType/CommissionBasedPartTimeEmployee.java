@@ -2,13 +2,15 @@ package com.cestar.employeepayrollsystem.UI.Models.PartTimeSalaryType;
 
 
 import android.os.Build;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import androidx.annotation.RequiresApi;
 
 import com.cestar.employeepayrollsystem.UI.Models.EmployeeType.PartTimeEmployee;
 
 //Created by Ramanpreet Singh
-public class CommissionBasedPartTimeEmployee extends PartTimeEmployee {
+public class CommissionBasedPartTimeEmployee extends PartTimeEmployee implements Parcelable {
 
     private float CommissionPercentage;
 
@@ -21,6 +23,34 @@ public class CommissionBasedPartTimeEmployee extends PartTimeEmployee {
         super(name, age, rate, hoursWorked);
         this.CommissionPercentage = CommissionPercentage;
     }
+
+    protected CommissionBasedPartTimeEmployee(Parcel in) {
+        super(in);
+        CommissionPercentage = in.readFloat();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest, flags);
+        dest.writeFloat(CommissionPercentage);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<CommissionBasedPartTimeEmployee> CREATOR = new Creator<CommissionBasedPartTimeEmployee>() {
+        @Override
+        public CommissionBasedPartTimeEmployee createFromParcel(Parcel in) {
+            return new CommissionBasedPartTimeEmployee(in);
+        }
+
+        @Override
+        public CommissionBasedPartTimeEmployee[] newArray(int size) {
+            return new CommissionBasedPartTimeEmployee[size];
+        }
+    };
 
     private float getCommissionPercentage()
     {
