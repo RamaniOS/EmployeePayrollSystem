@@ -30,7 +30,7 @@ public class MotorCycle extends Vehicle implements Parcelable {
 
     //-----------------------------------------------------------------------
     /** Constructor*/
-    public MotorCycle(String vehicleType, String manufacturer, String plateNo, String model, LocalDate insuranceDate, float milage, float price, int seater, String fuelType) {
+    public MotorCycle(String vehicleType, String manufacturer, String plateNo, String model, String insuranceDate, float milage, float price, int seater, String fuelType) {
         super(vehicleType, manufacturer, plateNo, model, insuranceDate, milage);
         this.price = price;
         this.seater = seater;
@@ -83,22 +83,6 @@ public class MotorCycle extends Vehicle implements Parcelable {
         this.fuelType = fuelType;
     }
 
-    //-----------------------------------------------------------------------
-    /** Helper */
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public String calculateInsuranceStatus() {
-        // get the insurance date from Vehicle class getter method.
-        LocalDate insurDate = getInsuranceDate();
-
-        // use common public method to calculate the insurace status.
-        CalculateInsuranceStat obj = new CalculateInsuranceStat();
-        // call method.
-        String strRemainingDuration = obj.calculateInsuranceStatusOfVehicle(insurDate);
-
-        return strRemainingDuration;
-    }
-
-
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void printMyDisplay() {
 
@@ -117,7 +101,6 @@ public class MotorCycle extends Vehicle implements Parcelable {
             System.out.println("    - Plate No.:" + " " + getPlateNo());//
             System.out.println("    - Model:" + " " + getModel());//
             System.out.println("    - Insurance Date:" + " " + getInsuranceDate());//
-            System.out.println("    - Insurance Status:" + " " + calculateInsuranceStatus());
             float milage = getMilage();
             System.out.println("    - Milage:" + " " + milage + " km/hr");//
             System.out.println("    - Milage Status:" + " " + super.statusOfMilage(milage));
@@ -132,6 +115,7 @@ public class MotorCycle extends Vehicle implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest, flags);
         dest.writeFloat(price);
         dest.writeInt(seater);
         dest.writeString(fuelType);

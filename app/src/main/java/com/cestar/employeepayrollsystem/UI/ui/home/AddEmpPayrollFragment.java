@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -71,6 +73,10 @@ public class AddEmpPayrollFragment extends Fragment {
     Button saveBtn;
 
     ImageButton addVimgBtn;
+
+    private RecyclerView recyclerViewDetail;
+    private VehicleAdapter vehicleAdapter;
+    private List<Vehicle> vehicles = new ArrayList<>();
 
     private String mParam1;
     private String mParam2;
@@ -221,6 +227,15 @@ public class AddEmpPayrollFragment extends Fragment {
 
         // by default
         iniTypeViews(view, 0);
+        initRecyclerView(view);
+    }
+
+    private void initRecyclerView(View view) {
+        recyclerViewDetail = view.findViewById(R.id.recycleVehicle);
+        vehicleAdapter = new VehicleAdapter(vehicles);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerViewDetail.setLayoutManager(layoutManager);
+        recyclerViewDetail.setAdapter(vehicleAdapter);
     }
 
     void saveClicked(View v,Integer type){
@@ -396,8 +411,9 @@ public class AddEmpPayrollFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             if(resultCode == Activity.RESULT_OK){
-
                 Vehicle vehicle = data.getParcelableExtra("result");
+                vehicles.add(vehicle);
+                vehicleAdapter.notifyDataSetChanged();
             }
         }
     }
