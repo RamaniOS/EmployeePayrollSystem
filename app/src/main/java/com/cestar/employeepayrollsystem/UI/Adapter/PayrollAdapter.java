@@ -1,8 +1,6 @@
 package com.cestar.employeepayrollsystem.UI.Adapter;
 
-import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cestar.employeepayrollsystem.R;
@@ -40,9 +38,16 @@ public class PayrollAdapter extends RecyclerView.Adapter<PayrollAdapter.PayrollV
     public void onBindViewHolder(@NonNull final PayrollViewHolder holder, int position) {
         final EmployeeClass employee = employees.get(position);
         holder.txtName.setText("Full Name: " + employee.getName());
-        holder.txtEType.setText("Employee Type: " + "Full Time");
+        holder.txtEType.setText("Employee Type: " + employee.type);
         holder.txtTotalEarning.setText("Birth Year: " + String.valueOf(employee.getBirthYear()));
         holder.txtHasVehicle.setText(employee.getVehicleList().size() > 0 ? "Employee has Vehicle." : "Employee has no Vehicle.");
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+
+        });
     }
 
     @Override

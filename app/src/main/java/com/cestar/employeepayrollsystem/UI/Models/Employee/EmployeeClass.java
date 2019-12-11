@@ -22,6 +22,7 @@ public abstract class EmployeeClass implements IPrintable, Parcelable {
     private String name;
     private int age;
     float EARNING = 1000.0f;
+    public String type;
 
     protected EmployeeClass(Parcel in) {
         name = in.readString();
