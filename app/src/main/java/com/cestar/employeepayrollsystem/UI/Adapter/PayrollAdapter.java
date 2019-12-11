@@ -1,8 +1,6 @@
 package com.cestar.employeepayrollsystem.UI.Adapter;
 
-import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +8,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cestar.employeepayrollsystem.R;
 import com.cestar.employeepayrollsystem.UI.Models.Employee.EmployeeClass;
-import com.cestar.employeepayrollsystem.UI.ui.home.AddEmpPayrollFragment;
 
 import java.util.List;
 
