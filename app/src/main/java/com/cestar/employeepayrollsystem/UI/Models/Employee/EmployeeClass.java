@@ -31,11 +31,13 @@ public abstract class EmployeeClass implements IPrintable, Parcelable {
         name = in.readString();
         age = in.readInt();
         EARNING = in.readFloat();
-        car = in.readParcelable(Car.class.getClassLoader());
-        motorcycle = in.readParcelable(MotorCycle.class.getClassLoader());
-        fullTime = in.readParcelable(FullTimeEmployee.class.getClassLoader());
-        intern = in.readParcelable(InternEmployee.class.getClassLoader());
-        partTime = in.readParcelable(PartTimeEmployee.class.getClassLoader());
+        type = in.readString();
+        vehicleList = in.readArrayList(Vehicle.class.getClassLoader());
+        //car = in.readParcelable(Car.class.getClassLoader());
+        //motorcycle = in.readParcelable(MotorCycle.class.getClassLoader());
+        //fullTime = in.readParcelable(FullTimeEmployee.class.getClassLoader());
+        //intern = in.readParcelable(InternEmployee.class.getClassLoader());
+        //partTime = in.readParcelable(PartTimeEmployee.class.getClassLoader());
     }
 
     @Override
@@ -43,35 +45,15 @@ public abstract class EmployeeClass implements IPrintable, Parcelable {
         dest.writeString(name);
         dest.writeInt(age);
         dest.writeFloat(EARNING);
-        dest.writeTypedList(vehicleList);
-        dest.writeParcelable(car, flags);
-        dest.writeParcelable(motorcycle, flags);
-        dest.writeParcelable(fullTime, flags);
-        dest.writeParcelable(intern, flags);
-        dest.writeParcelable(partTime, flags);
+        dest.writeString(type);
+        dest.writeList(vehicleList);
+       // dest.writeTypedList(vehicleList);
+//        dest.writeParcelable(car, flags);
+//        dest.writeParcelable(motorcycle, flags);
+//        dest.writeParcelable(fullTime, flags);
+//        dest.writeParcelable(intern, flags);
+//        dest.writeParcelable(partTime, flags);
     }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<EmployeeClass> CREATOR = new Creator<EmployeeClass>() {
-        @Override
-        public EmployeeClass createFromParcel(Parcel in) {
-            return new EmployeeClass(in) {
-                @Override
-                public void printMyData() {
-
-                }
-            };
-        }
-
-        @Override
-        public EmployeeClass[] newArray(int size) {
-            return new EmployeeClass[size];
-        }
-    };
 
     public List<Vehicle> getVehicleList() {
         return vehicleList;

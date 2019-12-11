@@ -10,18 +10,20 @@ import com.cestar.employeepayrollsystem.UI.Models.Employee.EmployeeClass;
 import com.cestar.employeepayrollsystem.UI.Models.MISC.NameLengthException;
 
 //Created by Ramanpreet Singh
-public class FullTimeEmployee extends EmployeeClass implements Parcelable {
+public class FullTimeEmployee extends EmployeeClass {
 
     private float salary;
     private float bonus;
 
     protected FullTimeEmployee(Parcel in) {
+        super(in);
         salary = in.readFloat();
         bonus = in.readFloat();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest, flags);
         dest.writeFloat(salary);
         dest.writeFloat(bonus);
     }
