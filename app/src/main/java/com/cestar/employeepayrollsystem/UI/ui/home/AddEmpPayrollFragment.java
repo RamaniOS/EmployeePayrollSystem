@@ -246,18 +246,22 @@ public class AddEmpPayrollFragment extends Fragment {
             switch (type) {
                 case 0:
                     employeeClass = new FullTimeEmployee(userNET.getText().toString(), Integer.valueOf(dobET.getText().toString()), Float.valueOf(salaryET.getText().toString()), Float.valueOf(bonusET.getText().toString()));
+                    employeeClass.type = "Full Time";
                     break;
                 case 1:
                     String partTimeType = partTimeSp.getSelectedItem().toString();
                     if(partTimeType.equalsIgnoreCase("Commision")){
                         employeeClass = new CommissionBasedPartTimeEmployee(userNET.getText().toString(),  Integer.valueOf(dobET.getText().toString()), Float.valueOf(rateET.getText().toString()), Integer.valueOf(hoursET.getText().toString()), Float.valueOf(percOrFixET.getText().toString()));
+                        employeeClass.type = "Commission/PartTime";
                     }else{
                         employeeClass = new FixedBasedPartTimeEmployee(userNET.getText().toString(),  Integer.valueOf(dobET.getText().toString()), Float.valueOf(rateET.getText().toString()), Integer.valueOf(hoursET.getText().toString()), Float.valueOf(percOrFixET.getText().toString()));
+                        employeeClass.type = "FixedBased/PartTime";
                     }
 
                     break;
                 default:
                     employeeClass = new InternEmployee(userNET.getText().toString(), Integer.valueOf(dobET.getText().toString()), schoolET.getText().toString());
+                    employeeClass.type = "Intern";
                     break;
 
             }
