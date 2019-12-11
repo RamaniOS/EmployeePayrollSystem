@@ -401,7 +401,6 @@ public class AddEmpPayrollFragment extends Fragment {
                 return true;
             }
         }
-
         return true;
 
     }
