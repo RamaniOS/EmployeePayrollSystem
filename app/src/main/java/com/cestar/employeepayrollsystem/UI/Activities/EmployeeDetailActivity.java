@@ -69,6 +69,11 @@ public class EmployeeDetailActivity extends AppCompatActivity {
         spinnerEmp = findViewById(R.id.spinnerType);
         partTimeSp = findViewById(R.id.part_time_sp);
 
+        spinnerEmp.setEnabled(false);
+        partTimeSp.setEnabled(false);
+        spinnerEmp.setClickable(false);
+        partTimeSp.setEnabled(false);
+
         userNET = findViewById(R.id.txt_name);
         dobET = findViewById(R.id.txt_dob);
         rateET = findViewById(R.id.txt_rate);
@@ -90,6 +95,7 @@ public class EmployeeDetailActivity extends AppCompatActivity {
 
         userNET.setText(employee.getName());
         dobET.setText("Age: " + String.valueOf(employee.getAge()));
+
 //
 //        if(employee.type.equalsIgnoreCase("Full Time")){
 //              spinnerEmp.setSelection(0);

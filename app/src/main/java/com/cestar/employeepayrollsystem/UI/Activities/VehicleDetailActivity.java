@@ -46,6 +46,11 @@ public class VehicleDetailActivity extends AppCompatActivity {
         txt_price = findViewById(R.id.txt_price);
         txt_seater = findViewById(R.id.txt_seater);
 
+        spinnerType.setEnabled(false);
+        spinnerMaker.setEnabled(false);
+        spinnerType.setClickable(false);
+        spinnerMaker.setEnabled(false);
+
         // set titles...
         Intent intent = getIntent();
         Vehicle vehObj = intent.getParcelableExtra("vehDetail");

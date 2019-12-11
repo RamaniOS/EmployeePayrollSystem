@@ -136,6 +136,13 @@ public class AddEmpPayrollFragment extends Fragment {
         salaryET.setText("");
         bonusET.setText("");
 
+        vehicles = new ArrayList<>();
+
+        vehicleAdapter.notifyDataSetChanged();
+
+        vehicleView.setVisibility(View.GONE);
+
+
     }
 
     @Override
