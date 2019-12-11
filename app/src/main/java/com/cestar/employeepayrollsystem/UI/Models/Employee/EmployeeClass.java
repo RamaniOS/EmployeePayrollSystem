@@ -66,9 +66,7 @@ public abstract class EmployeeClass implements IPrintable, Parcelable {
     public List<Vehicle> vehicleList = new ArrayList<>();
     public Car car;
     public MotorCycle motorcycle;
-    public FullTimeEmployee fullTime;
-    public InternEmployee intern;
-    public PartTimeEmployee partTime;
+
 
     //Constructor
     public EmployeeClass() {

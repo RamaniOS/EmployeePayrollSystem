@@ -45,7 +45,7 @@ public class FullTimeEmployee extends EmployeeClass {
         }
     };
 
-    private float getSalary()
+    public float getSalary()
     {
         return salary;
     }
@@ -55,7 +55,7 @@ public class FullTimeEmployee extends EmployeeClass {
         this.salary = salary;
     }
 
-    private float getBonus()
+    public float getBonus()
     {
         return bonus;
     }
