@@ -10,7 +10,7 @@ import androidx.annotation.RequiresApi;
 import com.cestar.employeepayrollsystem.UI.Models.EmployeeType.PartTimeEmployee;
 
 //Created by Ramanpreet Singh
-public class CommissionBasedPartTimeEmployee extends PartTimeEmployee implements Parcelable {
+public class CommissionBasedPartTimeEmployee extends PartTimeEmployee {
 
     private float CommissionPercentage;
 
