@@ -21,7 +21,11 @@ import com.cestar.employeepayrollsystem.R;
 import com.cestar.employeepayrollsystem.UI.Adapter.VehicleAdapter;
 import com.cestar.employeepayrollsystem.UI.Models.Employee.EmployeeClass;
 import com.cestar.employeepayrollsystem.UI.Models.EmployeeType.FullTimeEmployee;
+import com.cestar.employeepayrollsystem.UI.Models.EmployeeType.InternEmployee;
+import com.cestar.employeepayrollsystem.UI.Models.EmployeeType.PartTimeEmployee;
 import com.cestar.employeepayrollsystem.UI.Models.Models.Employee;
+import com.cestar.employeepayrollsystem.UI.Models.PartTimeSalaryType.CommissionBasedPartTimeEmployee;
+import com.cestar.employeepayrollsystem.UI.Models.PartTimeSalaryType.FixedBasedPartTimeEmployee;
 import com.cestar.employeepayrollsystem.UI.Models.Vehicle.Vehicle;
 
 import java.util.ArrayList;
@@ -87,9 +91,73 @@ public class EmployeeDetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
+        //Setup for different types of employees
         Object employee = intent.getParcelableExtra("empDetail");
         if (employee instanceof FullTimeEmployee) {
-            setUpViews((FullTimeEmployee) employee);
+            setUpFull((FullTimeEmployee) employee);
+        } else if (employee instanceof InternEmployee) {
+            setUpIntern((InternEmployee) employee);
+        } else if (employee instanceof CommissionBasedPartTimeEmployee) {
+            setUpCommission((CommissionBasedPartTimeEmployee) employee);
+        } else if (employee instanceof FixedBasedPartTimeEmployee) {
+            setUpFixed((FixedBasedPartTimeEmployee) employee);
+        }
+    }
+
+    void setUpFull(FullTimeEmployee employee) {
+        userNET.setText(employee.getName());
+        dobET.setText(String.valueOf(employee.getAge()));
+        spinnerEmp.setSelection(0);
+        salaryET.setText(String.valueOf(employee.getSalary()));
+        bonusET.setText(String.valueOf(employee.getBonus()));
+        partConst.setVisibility(View.GONE);
+        internConst.setVisibility(View.GONE);
+        fullConst.setVisibility(View.VISIBLE);
+        showList(employee);
+    }
+
+    void setUpIntern(InternEmployee employee) {
+        userNET.setText(employee.getName());
+        dobET.setText(String.valueOf(employee.getAge()));
+        spinnerEmp.setSelection(2);
+        schoolET.setText(employee.getSchoolName());
+        partConst.setVisibility(View.GONE);
+        internConst.setVisibility(View.VISIBLE);
+        fullConst.setVisibility(View.GONE);
+        showList(employee);
+    }
+
+    void setUpCommission(CommissionBasedPartTimeEmployee employee) {
+        userNET.setText(employee.getName());
+        dobET.setText(String.valueOf(employee.getAge()));
+        spinnerEmp.setSelection(1);
+        //schoolET.setText(employee.getSchoolName());
+        partConst.setVisibility(View.GONE);
+        internConst.setVisibility(View.VISIBLE);
+        fullConst.setVisibility(View.GONE);
+        showList(employee);
+    }
+
+    void setUpFixed(FixedBasedPartTimeEmployee employee) {
+        userNET.setText(employee.getName());
+        dobET.setText(String.valueOf(employee.getAge()));
+        spinnerEmp.setSelection(1);
+        rateET.setText(String.valueOf(employee.getRate()));
+        hoursET.setText(String.valueOf(employee.getHoursWorked()));
+        showList(employee);
+    }
+
+    void showList(EmployeeClass employee) {
+        vehicles = employee.getVehicleList();
+        ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
+        params.height = 270 * vehicles.size();
+        recyclerView.setLayoutParams(params);
+        if (vehicles.size() > 0) {
+            vehicleView.setVisibility(View.VISIBLE);
+            //
+            initRecyclerView(employee);
+        } else {
+            vehicleView.setVisibility(View.GONE);
         }
     }
 
@@ -99,13 +167,13 @@ public class EmployeeDetailActivity extends AppCompatActivity {
         dobET.setText(String.valueOf(employee.getAge()));
 
 
-        if(employee.type.equalsIgnoreCase("Full Time")){
-              spinnerEmp.setSelection(0);
-              salaryET.setText(String.valueOf(employee.getSalary()));
-              bonusET.setText(String.valueOf(employee.getBonus()));
-              partConst.setVisibility(View.GONE);
-             internConst.setVisibility(View.GONE);
-             fullConst.setVisibility(View.VISIBLE);
+        if (employee.type.equalsIgnoreCase("Full Time")) {
+            spinnerEmp.setSelection(0);
+            salaryET.setText(String.valueOf(employee.getSalary()));
+            bonusET.setText(String.valueOf(employee.getBonus()));
+            partConst.setVisibility(View.GONE);
+            internConst.setVisibility(View.GONE);
+            fullConst.setVisibility(View.VISIBLE);
         }
 //        else if(employee.type.equalsIgnoreCase("Part Time")){
 //              spinnerEmp.setSelection(1);
@@ -126,17 +194,7 @@ public class EmployeeDetailActivity extends AppCompatActivity {
 //
 //        }
 
-        vehicles = employee.getVehicleList();
-        ViewGroup.LayoutParams params=recyclerView.getLayoutParams();
-        params.height=270*vehicles.size();
-        recyclerView.setLayoutParams(params);
-        if(vehicles.size() > 0){
-            vehicleView.setVisibility(View.VISIBLE);
-            //
-            initRecyclerView(employee);
-        }else{
-            vehicleView.setVisibility(View.GONE);
-        }
+
 
     }
 
