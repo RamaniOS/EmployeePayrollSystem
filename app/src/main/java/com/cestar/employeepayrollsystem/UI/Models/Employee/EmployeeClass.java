@@ -5,10 +5,13 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import com.cestar.employeepayrollsystem.UI.Models.MISC.IPrintable;
+import com.cestar.employeepayrollsystem.UI.Models.Vehicle.Vehicle;
 import com.cestar.employeepayrollsystem.UI.Models.VehicleType.Car;
 import com.cestar.employeepayrollsystem.UI.Models.VehicleType.MotorCycle;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 //Created by Ramanpreet Singh
 public abstract class EmployeeClass implements IPrintable {
@@ -18,6 +21,15 @@ public abstract class EmployeeClass implements IPrintable {
     private int age;
     float EARNING = 1000.0f;
 
+    public List<Vehicle> getVehicleList() {
+        return vehicleList;
+    }
+
+    public void setVehicleList(List<Vehicle> vehicleList) {
+        this.vehicleList = vehicleList;
+    }
+
+    public List<Vehicle> vehicleList = new ArrayList<>();
     public Car car;
     public MotorCycle motorcycle;
 

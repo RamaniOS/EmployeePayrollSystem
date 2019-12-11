@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +23,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import com.cestar.employeepayrollsystem.R;
+import com.cestar.employeepayrollsystem.UI.Adapter.VehicleAdapter;
 import com.cestar.employeepayrollsystem.UI.AddVehicleActivity;
 import com.cestar.employeepayrollsystem.UI.Helper.Helper;
 import com.cestar.employeepayrollsystem.UI.Models.Employee.EmployeeClass;
@@ -262,6 +262,9 @@ public class AddEmpPayrollFragment extends Fragment {
 
             }
 
+            if(vehicles.size() > 0) {
+                employeeClass.setVehicleList(vehicles);
+            }
             Helper.showAlertCommon(getContext(), "Employee Added Succesfully.");
             EmployeeManager.addNewEmployee(employeeClass);
 
