@@ -1,4 +1,4 @@
-package com.cestar.employeepayrollsystem.UI;
+package com.cestar.employeepayrollsystem.UI.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 

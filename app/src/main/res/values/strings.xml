@@ -27,8 +27,8 @@
     </array>
 
     <array name="array_veh_type">
-    <item>Car</item>
-    <item>Motor Cycle</item>
+        <item>Car</item>
+        <item>Motor Cycle</item>
     </array>
 
     <array name="array_car_maker">

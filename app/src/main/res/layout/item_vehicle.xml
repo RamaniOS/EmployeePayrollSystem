@@ -11,9 +11,11 @@
         android:id="@+id/txtVType"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
         android:fontFamily="@font/ramabhadra"
         android:text="TextView"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,10 +24,21 @@
         android:id="@+id/txtVMaker"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="33dp"
         android:fontFamily="@font/ramabhadra"
         android:text="TextView"
-        android:textSize="18sp"
+        android:textSize="16sp"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtVType" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="9dp"
+        android:layout_height="9dp"
+        android:background="#4CAF50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

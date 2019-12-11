@@ -24,7 +24,7 @@ import android.widget.Spinner;
 
 import com.cestar.employeepayrollsystem.R;
 import com.cestar.employeepayrollsystem.UI.Adapter.VehicleAdapter;
-import com.cestar.employeepayrollsystem.UI.AddVehicleActivity;
+import com.cestar.employeepayrollsystem.UI.Activities.AddVehicleActivity;
 import com.cestar.employeepayrollsystem.UI.Helper.Helper;
 import com.cestar.employeepayrollsystem.UI.Models.Employee.EmployeeClass;
 import com.cestar.employeepayrollsystem.UI.Models.EmployeeType.FullTimeEmployee;
@@ -57,6 +57,9 @@ public class AddEmpPayrollFragment extends Fragment {
     ConstraintLayout partConst;
     ConstraintLayout internConst;
     ConstraintLayout fullConst;
+    ConstraintLayout vehicleView;
+
+    RecyclerView recyclerView;
 
     Spinner spinnerEmp;
     Spinner partTimeSp;
@@ -123,6 +126,25 @@ public class AddEmpPayrollFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_add_emp_payroll, container, false);
     }
 
+    void resetEditTexts(){
+        userNET.setText("");
+        dobET.setText("");
+        rateET.setText("");
+        hoursET.setText("");
+        percOrFixET.setText("");
+        schoolET.setText("");
+        salaryET.setText("");
+        bonusET.setText("");
+
+        vehicles = new ArrayList<>();
+
+        vehicleAdapter.notifyDataSetChanged();
+
+        vehicleView.setVisibility(View.GONE);
+
+
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -130,6 +152,9 @@ public class AddEmpPayrollFragment extends Fragment {
         partConst = view.findViewById(R.id.partTimeView);
         internConst = view.findViewById(R.id.internView);
         fullConst = view.findViewById(R.id.fullTimeView);
+        vehicleView = view.findViewById(R.id.vehicleView);
+
+        recyclerView = view.findViewById(R.id.recycleVehicle);
 
         spinnerEmp = view.findViewById(R.id.spinnerType);
         partTimeSp = view.findViewById(R.id.part_time_sp);
@@ -226,6 +251,13 @@ public class AddEmpPayrollFragment extends Fragment {
         });
 
         // by default
+        if(vehicles.size() > 0){
+            vehicleView.setVisibility(View.VISIBLE);
+        }else{
+            vehicleView.setVisibility(View.GONE);
+        }
+
+        // by default
         iniTypeViews(view, 0);
         initRecyclerView(view);
     }
@@ -271,6 +303,9 @@ public class AddEmpPayrollFragment extends Fragment {
             }
             Helper.showAlertCommon(getContext(), "Employee Added Succesfully.");
             EmployeeManager.addNewEmployee(employeeClass);
+
+            //
+            resetEditTexts();
 
         }else{}
 
@@ -419,6 +454,17 @@ public class AddEmpPayrollFragment extends Fragment {
                 Vehicle vehicle = data.getParcelableExtra("result");
                 vehicles.add(vehicle);
                 vehicleAdapter.notifyDataSetChanged();
+
+                ViewGroup.LayoutParams params=recyclerView.getLayoutParams();
+                params.height=270*vehicles.size();
+                recyclerView.setLayoutParams(params);
+                if(vehicles.size() > 0){
+                    vehicleView.setVisibility(View.VISIBLE);
+
+                }else{
+                    vehicleView.setVisibility(View.GONE);
+                }
+
             }
         }
     }

@@ -1,5 +1,7 @@
 package com.cestar.employeepayrollsystem.UI.Adapter;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,9 +11,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cestar.employeepayrollsystem.R;
+import com.cestar.employeepayrollsystem.UI.Activities.AddVehicleActivity;
+import com.cestar.employeepayrollsystem.UI.Activities.EmployeeDetailActivity;
 import com.cestar.employeepayrollsystem.UI.Models.Employee.EmployeeClass;
 import com.cestar.employeepayrollsystem.UI.ui.home.AddEmpPayrollFragment;
 
@@ -44,6 +50,12 @@ public class PayrollAdapter extends RecyclerView.Adapter<PayrollAdapter.PayrollV
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Intent dAct = new Intent(v.getContext(), EmployeeDetailActivity.class);
+
+                dAct.putExtra("empDetail", employee);
+
+                v.getContext().startActivity(dAct);
 
             }
 
