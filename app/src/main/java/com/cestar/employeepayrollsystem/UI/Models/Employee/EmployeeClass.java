@@ -1,6 +1,8 @@
 package com.cestar.employeepayrollsystem.UI.Models.Employee;
 
 import android.os.Build;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import androidx.annotation.RequiresApi;
 
@@ -14,12 +16,52 @@ import java.util.ArrayList;
 import java.util.List;
 
 //Created by Ramanpreet Singh
-public abstract class EmployeeClass implements IPrintable {
+public abstract class EmployeeClass implements IPrintable, Parcelable {
 
     //Properties
     private String name;
     private int age;
     float EARNING = 1000.0f;
+
+    protected EmployeeClass(Parcel in) {
+        name = in.readString();
+        age = in.readInt();
+        EARNING = in.readFloat();
+        car = in.readParcelable(Car.class.getClassLoader());
+        motorcycle = in.readParcelable(MotorCycle.class.getClassLoader());
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeInt(age);
+        dest.writeFloat(EARNING);
+        dest.writeTypedList(vehicleList);
+        dest.writeParcelable(car, flags);
+        dest.writeParcelable(motorcycle, flags);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<EmployeeClass> CREATOR = new Creator<EmployeeClass>() {
+        @Override
+        public EmployeeClass createFromParcel(Parcel in) {
+            return new EmployeeClass(in) {
+                @Override
+                public void printMyData() {
+
+                }
+            };
+        }
+
+        @Override
+        public EmployeeClass[] newArray(int size) {
+            return new EmployeeClass[size];
+        }
+    };
 
     public List<Vehicle> getVehicleList() {
         return vehicleList;

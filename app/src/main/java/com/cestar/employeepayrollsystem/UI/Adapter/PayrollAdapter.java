@@ -1,6 +1,8 @@
 package com.cestar.employeepayrollsystem.UI.Adapter;
 
+import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,10 +10,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cestar.employeepayrollsystem.R;
 import com.cestar.employeepayrollsystem.UI.Models.Employee.EmployeeClass;
+import com.cestar.employeepayrollsystem.UI.ui.home.AddEmpPayrollFragment;
 
 import java.util.List;
 
@@ -33,8 +37,8 @@ public class PayrollAdapter extends RecyclerView.Adapter<PayrollAdapter.PayrollV
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
-    public void onBindViewHolder(@NonNull PayrollViewHolder holder, int position) {
-        EmployeeClass employee = employees.get(position);
+    public void onBindViewHolder(@NonNull final PayrollViewHolder holder, int position) {
+        final EmployeeClass employee = employees.get(position);
         holder.txtName.setText("Full Name: " + employee.getName());
         holder.txtEType.setText("Employee Type: " + "Full Time");
         holder.txtTotalEarning.setText("Birth Year: " + String.valueOf(employee.getBirthYear()));
