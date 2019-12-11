@@ -10,16 +10,18 @@ import com.cestar.employeepayrollsystem.UI.Models.Employee.EmployeeClass;
 import com.cestar.employeepayrollsystem.UI.Models.MISC.NameLengthException;
 
 //Created by Ramanpreet Singh
-public class InternEmployee extends EmployeeClass implements Parcelable {
+public class InternEmployee extends EmployeeClass {
 
     private String schoolName;
 
     protected InternEmployee(Parcel in) {
+        super(in);
         schoolName = in.readString();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest, flags);
         dest.writeString(schoolName);
     }
 
@@ -40,7 +42,7 @@ public class InternEmployee extends EmployeeClass implements Parcelable {
         }
     };
 
-    private String getSchoolName()
+    public String getSchoolName()
     {
         return schoolName;
     }

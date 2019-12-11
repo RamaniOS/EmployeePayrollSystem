@@ -14,12 +14,10 @@ import com.cestar.employeepayrollsystem.UI.Models.VehicleType.Car;
 import com.cestar.employeepayrollsystem.UI.Models.VehicleType.MotorCycle;
 
 //Created by Ramanpreet Singh
-public abstract class PartTimeEmployee extends EmployeeClass implements Parcelable {
+public abstract class PartTimeEmployee extends EmployeeClass {
 
     private float rate;
     private int hoursWorked;
-    public CommissionBasedPartTimeEmployee commission;
-    public FixedBasedPartTimeEmployee fixed;
 
     public PartTimeEmployee()
     {
@@ -29,8 +27,6 @@ public abstract class PartTimeEmployee extends EmployeeClass implements Parcelab
         super(in);
         rate = in.readFloat();
         hoursWorked = in.readInt();
-        commission = in.readParcelable(CommissionBasedPartTimeEmployee.class.getClassLoader());
-        fixed = in.readParcelable(FixedBasedPartTimeEmployee.class.getClassLoader());
     }
 
     @Override
@@ -38,31 +34,7 @@ public abstract class PartTimeEmployee extends EmployeeClass implements Parcelab
         super.writeToParcel(dest, flags);
         dest.writeFloat(rate);
         dest.writeInt(hoursWorked);
-        dest.writeParcelable(commission, flags);
-        dest.writeParcelable(fixed, flags);
     }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<PartTimeEmployee> CREATOR = new Creator<PartTimeEmployee>() {
-        @Override
-        public PartTimeEmployee createFromParcel(Parcel in) {
-            return new PartTimeEmployee(in) {
-                @Override
-                public float calculateEarning() {
-                    return 0;
-                }
-            };
-        }
-
-        @Override
-        public PartTimeEmployee[] newArray(int size) {
-            return new PartTimeEmployee[size];
-        }
-    };
 
     public float getRate()
     {

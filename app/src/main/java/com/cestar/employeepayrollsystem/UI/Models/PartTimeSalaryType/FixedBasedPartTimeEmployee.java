@@ -10,7 +10,7 @@ import androidx.annotation.RequiresApi;
 import com.cestar.employeepayrollsystem.UI.Models.EmployeeType.PartTimeEmployee;
 
 //Created by Ramanpreet Singh
-public class FixedBasedPartTimeEmployee extends PartTimeEmployee implements Parcelable {
+public class FixedBasedPartTimeEmployee extends PartTimeEmployee {
 
     private float fixedAmount;
 
@@ -42,7 +42,7 @@ public class FixedBasedPartTimeEmployee extends PartTimeEmployee implements Parc
         }
     };
 
-    private float getFixedAmount()
+    public float getFixedAmount()
     {
         return fixedAmount;
     }
