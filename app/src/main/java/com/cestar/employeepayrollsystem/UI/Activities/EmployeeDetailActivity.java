@@ -131,9 +131,13 @@ public class EmployeeDetailActivity extends AppCompatActivity {
         userNET.setText(employee.getName());
         dobET.setText(String.valueOf(employee.getAge()));
         spinnerEmp.setSelection(1);
-        //schoolET.setText(employee.getSchoolName());
-        partConst.setVisibility(View.GONE);
-        internConst.setVisibility(View.VISIBLE);
+        partTimeSp.setSelection(0);
+        rateET.setText(String.valueOf(employee.getRate()));
+        hoursET.setText(String.valueOf(employee.getHoursWorked()));
+
+        percOrFixET.setText(String.valueOf(employee.getCommissionPercentage()) + "%");
+        partConst.setVisibility(View.VISIBLE);
+        internConst.setVisibility(View.GONE);
         fullConst.setVisibility(View.GONE);
         showList(employee);
     }
@@ -142,8 +146,14 @@ public class EmployeeDetailActivity extends AppCompatActivity {
         userNET.setText(employee.getName());
         dobET.setText(String.valueOf(employee.getAge()));
         spinnerEmp.setSelection(1);
+        partTimeSp.setSelection(1);
         rateET.setText(String.valueOf(employee.getRate()));
         hoursET.setText(String.valueOf(employee.getHoursWorked()));
+
+        percOrFixET.setText("$" + String.valueOf(employee.getFixedAmount()));
+        partConst.setVisibility(View.VISIBLE);
+        internConst.setVisibility(View.GONE);
+        fullConst.setVisibility(View.GONE);
         showList(employee);
     }
 
