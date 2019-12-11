@@ -21,6 +21,7 @@ import com.cestar.employeepayrollsystem.R;
 import com.cestar.employeepayrollsystem.UI.Adapter.VehicleAdapter;
 import com.cestar.employeepayrollsystem.UI.Models.Employee.EmployeeClass;
 import com.cestar.employeepayrollsystem.UI.Models.EmployeeType.FullTimeEmployee;
+import com.cestar.employeepayrollsystem.UI.Models.Models.Employee;
 import com.cestar.employeepayrollsystem.UI.Models.Vehicle.Vehicle;
 
 import java.util.ArrayList;
@@ -85,10 +86,11 @@ public class EmployeeDetailActivity extends AppCompatActivity {
         bonusET = findViewById(R.id.textInputBonus);
 
         Intent intent = getIntent();
-        FullTimeEmployee employee = intent.getParcelableExtra("empDetail");
 
-        setUpViews(employee);
-
+        Object employee = intent.getParcelableExtra("empDetail");
+        if (employee instanceof FullTimeEmployee) {
+            setUpViews((FullTimeEmployee) employee);
+        }
     }
 
     void setUpViews(FullTimeEmployee employee) {
