@@ -8,10 +8,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cestar.employeepayrollsystem.R;
 import com.cestar.employeepayrollsystem.UI.Models.Employee.EmployeeClass;
+import com.cestar.employeepayrollsystem.UI.ui.home.AddEmpPayrollFragment;
 
 import java.util.List;
 
@@ -39,6 +41,13 @@ public class PayrollAdapter extends RecyclerView.Adapter<PayrollAdapter.PayrollV
         holder.txtEType.setText("Employee Type: " + employee.type);
         holder.txtTotalEarning.setText("Birth Year: " + String.valueOf(employee.getBirthYear()));
         holder.txtHasVehicle.setText(employee.getVehicleList().size() > 0 ? "Employee has Vehicle." : "Employee has no Vehicle.");
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+
+        });
     }
 
     @Override
