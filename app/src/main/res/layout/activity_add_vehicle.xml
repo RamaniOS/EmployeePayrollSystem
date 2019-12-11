@@ -84,7 +84,7 @@
                         android:layout_height="match_parent"
                         android:drawablePadding="20dp"
                         android:hint="Plate No..."
-                        android:inputType="number" />
+                        android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Spinner

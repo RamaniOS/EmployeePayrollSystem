@@ -52,7 +52,7 @@ public class CommissionBasedPartTimeEmployee extends PartTimeEmployee {
         }
     };
 
-    private float getCommissionPercentage()
+    public float getCommissionPercentage()
     {
         return CommissionPercentage;
     }
