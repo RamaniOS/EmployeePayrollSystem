@@ -57,6 +57,9 @@ public class AddEmpPayrollFragment extends Fragment {
     ConstraintLayout partConst;
     ConstraintLayout internConst;
     ConstraintLayout fullConst;
+    ConstraintLayout vehicleView;
+
+    RecyclerView recyclerView;
 
     Spinner spinnerEmp;
     Spinner partTimeSp;
@@ -130,6 +133,9 @@ public class AddEmpPayrollFragment extends Fragment {
         partConst = view.findViewById(R.id.partTimeView);
         internConst = view.findViewById(R.id.internView);
         fullConst = view.findViewById(R.id.fullTimeView);
+        vehicleView = view.findViewById(R.id.vehicleView);
+
+        recyclerView = view.findViewById(R.id.recycleVehicle);
 
         spinnerEmp = view.findViewById(R.id.spinnerType);
         partTimeSp = view.findViewById(R.id.part_time_sp);
@@ -224,6 +230,13 @@ public class AddEmpPayrollFragment extends Fragment {
 
             }
         });
+
+        // by default
+        if(vehicles.size() > 0){
+            vehicleView.setVisibility(View.VISIBLE);
+        }else{
+            vehicleView.setVisibility(View.GONE);
+        }
 
         // by default
         iniTypeViews(view, 0);
@@ -419,6 +432,17 @@ public class AddEmpPayrollFragment extends Fragment {
                 Vehicle vehicle = data.getParcelableExtra("result");
                 vehicles.add(vehicle);
                 vehicleAdapter.notifyDataSetChanged();
+
+                ViewGroup.LayoutParams params=recyclerView.getLayoutParams();
+                params.height=270*vehicles.size();
+                recyclerView.setLayoutParams(params);
+                if(vehicles.size() > 0){
+                    vehicleView.setVisibility(View.VISIBLE);
+
+                }else{
+                    vehicleView.setVisibility(View.GONE);
+                }
+
             }
         }
     }
