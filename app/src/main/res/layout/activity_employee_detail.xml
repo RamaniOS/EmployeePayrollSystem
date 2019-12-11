@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    tools:context=".UI.ui.home.AddEmpPayrollFragment">
+    tools:context=".UI.Activities.EmployeeDetailActivity">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,6 +43,7 @@
                         android:id="@+id/txt_name"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:clickable="false"
                         android:drawablePadding="20dp"
                         android:hint="Employee Name"
                         android:inputType="text" />
@@ -63,6 +65,7 @@
                         android:id="@+id/txt_dob"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:clickable="false"
                         android:drawablePadding="20dp"
                         android:hint="Age"
                         android:inputType="number" />
@@ -76,6 +79,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:clickable="false"
                     android:entries="@array/array_emp_type"
                     android:layerType="hardware"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -121,6 +126,7 @@
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="16dp"
+                            android:clickable="false"
                             android:entries="@array/array_partTime_type"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -142,6 +148,7 @@
                                 android:id="@+id/txt_PerOrFixed"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:clickable="false"
                                 android:drawablePadding="20dp"
                                 android:inputType="numberDecimal" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -162,6 +169,7 @@
                                 android:id="@+id/txt_rate"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:clickable="false"
                                 android:drawablePadding="20dp"
                                 android:hint="Rate"
                                 android:inputType="numberDecimal" />
@@ -183,6 +191,7 @@
                                 android:id="@+id/txt_hours_worked"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:clickable="false"
                                 android:drawablePadding="20dp"
                                 android:hint="Hours"
                                 android:inputType="number" />
@@ -218,6 +227,7 @@
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="8dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -227,6 +237,7 @@
                                 android:id="@+id/txt_SchoolName"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:clickable="false"
                                 android:drawablePadding="20dp"
                                 android:hint="School Name"
                                 android:inputType="text" />
@@ -269,6 +280,7 @@
                                 android:id="@+id/textInputSalary"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:clickable="false"
                                 android:drawablePadding="20dp"
                                 android:hint="Salary"
                                 android:inputType="numberDecimal" />
@@ -282,6 +294,7 @@
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="8dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -291,6 +304,7 @@
                                 android:id="@+id/textInputBonus"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:clickable="false"
                                 android:drawablePadding="20dp"
                                 android:hint="Bonus"
                                 android:inputType="numberDecimal" />
@@ -300,36 +314,22 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/vehicleView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-                <ImageButton
-                    android:id="@+id/addVBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:src="@android:drawable/ic_input_add"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textVieww"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginBottom="17dp"
-                    android:text="Add Vehicle"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Vehicle List:"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/addVBtn"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/vehicleView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycleVehicle"
@@ -342,29 +342,10 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/textVieww" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:id="@+id/save_btn"
-                    android:layout_width="200dp"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="20dp"
-                    android:text="Save"
-                    app:cornerRadius="25dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

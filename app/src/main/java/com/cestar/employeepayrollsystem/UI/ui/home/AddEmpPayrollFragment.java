@@ -24,7 +24,7 @@ import android.widget.Spinner;
 
 import com.cestar.employeepayrollsystem.R;
 import com.cestar.employeepayrollsystem.UI.Adapter.VehicleAdapter;
-import com.cestar.employeepayrollsystem.UI.AddVehicleActivity;
+import com.cestar.employeepayrollsystem.UI.Activities.AddVehicleActivity;
 import com.cestar.employeepayrollsystem.UI.Helper.Helper;
 import com.cestar.employeepayrollsystem.UI.Models.Employee.EmployeeClass;
 import com.cestar.employeepayrollsystem.UI.Models.EmployeeType.FullTimeEmployee;

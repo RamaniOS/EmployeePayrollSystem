@@ -6,6 +6,9 @@ import android.os.Parcelable;
 
 import androidx.annotation.RequiresApi;
 
+import com.cestar.employeepayrollsystem.UI.Models.EmployeeType.FullTimeEmployee;
+import com.cestar.employeepayrollsystem.UI.Models.EmployeeType.InternEmployee;
+import com.cestar.employeepayrollsystem.UI.Models.EmployeeType.PartTimeEmployee;
 import com.cestar.employeepayrollsystem.UI.Models.MISC.IPrintable;
 import com.cestar.employeepayrollsystem.UI.Models.Vehicle.Vehicle;
 import com.cestar.employeepayrollsystem.UI.Models.VehicleType.Car;
@@ -30,6 +33,9 @@ public abstract class EmployeeClass implements IPrintable, Parcelable {
         EARNING = in.readFloat();
         car = in.readParcelable(Car.class.getClassLoader());
         motorcycle = in.readParcelable(MotorCycle.class.getClassLoader());
+        fullTime = in.readParcelable(FullTimeEmployee.class.getClassLoader());
+        intern = in.readParcelable(InternEmployee.class.getClassLoader());
+        partTime = in.readParcelable(PartTimeEmployee.class.getClassLoader());
     }
 
     @Override
@@ -40,6 +46,9 @@ public abstract class EmployeeClass implements IPrintable, Parcelable {
         dest.writeTypedList(vehicleList);
         dest.writeParcelable(car, flags);
         dest.writeParcelable(motorcycle, flags);
+        dest.writeParcelable(fullTime, flags);
+        dest.writeParcelable(intern, flags);
+        dest.writeParcelable(partTime, flags);
     }
 
     @Override
@@ -75,6 +84,9 @@ public abstract class EmployeeClass implements IPrintable, Parcelable {
     public List<Vehicle> vehicleList = new ArrayList<>();
     public Car car;
     public MotorCycle motorcycle;
+    public FullTimeEmployee fullTime;
+    public InternEmployee intern;
+    public PartTimeEmployee partTime;
 
     //Constructor
     public EmployeeClass() {
