@@ -7,28 +7,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.Switch;
 
 import com.cestar.employeepayrollsystem.R;
 import com.cestar.employeepayrollsystem.UI.Adapter.VehicleAdapter;
 import com.cestar.employeepayrollsystem.UI.Models.Employee.EmployeeClass;
 import com.cestar.employeepayrollsystem.UI.Models.EmployeeType.FullTimeEmployee;
 import com.cestar.employeepayrollsystem.UI.Models.EmployeeType.InternEmployee;
-import com.cestar.employeepayrollsystem.UI.Models.EmployeeType.PartTimeEmployee;
-import com.cestar.employeepayrollsystem.UI.Models.Models.Employee;
 import com.cestar.employeepayrollsystem.UI.Models.PartTimeSalaryType.CommissionBasedPartTimeEmployee;
 import com.cestar.employeepayrollsystem.UI.Models.PartTimeSalaryType.FixedBasedPartTimeEmployee;
 import com.cestar.employeepayrollsystem.UI.Models.Vehicle.Vehicle;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeDetailActivity extends AppCompatActivity {
