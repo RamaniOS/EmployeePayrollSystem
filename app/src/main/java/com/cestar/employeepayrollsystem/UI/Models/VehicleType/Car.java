@@ -8,13 +8,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.RequiresApi;
-
-import com.cestar.employeepayrollsystem.UI.Models.Other.CalculateInsuranceStat;
 import com.cestar.employeepayrollsystem.UI.Models.Vehicle.Vehicle;
-
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.time.LocalDate;
 
 /// This is the Car class inherited from parent class 'Vehicle', containing the information of vehicle type car.
 public class Car extends Vehicle implements Parcelable {
