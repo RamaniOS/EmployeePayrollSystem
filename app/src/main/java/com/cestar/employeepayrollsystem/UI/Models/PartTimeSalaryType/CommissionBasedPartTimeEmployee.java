@@ -3,7 +3,6 @@ package com.cestar.employeepayrollsystem.UI.Models.PartTimeSalaryType;
 
 import android.os.Build;
 import android.os.Parcel;
-import android.os.Parcelable;
 
 import androidx.annotation.RequiresApi;
 
