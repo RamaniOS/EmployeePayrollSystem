@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,9 +20,6 @@ import com.cestar.employeepayrollsystem.UI.Helper.Helper;
 import com.cestar.employeepayrollsystem.UI.Models.Vehicle.Vehicle;
 import com.cestar.employeepayrollsystem.UI.Models.VehicleType.Car;
 import com.cestar.employeepayrollsystem.UI.Models.VehicleType.MotorCycle;
-import com.cestar.employeepayrollsystem.UI.ui.home.AddEmpPayrollFragment;
-
-import java.time.LocalDate;
 
 public class AddVehicleActivity extends AppCompatActivity {
 

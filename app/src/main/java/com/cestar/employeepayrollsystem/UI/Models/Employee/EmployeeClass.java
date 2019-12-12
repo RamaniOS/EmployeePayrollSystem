@@ -6,9 +6,6 @@ import android.os.Parcelable;
 
 import androidx.annotation.RequiresApi;
 
-import com.cestar.employeepayrollsystem.UI.Models.EmployeeType.FullTimeEmployee;
-import com.cestar.employeepayrollsystem.UI.Models.EmployeeType.InternEmployee;
-import com.cestar.employeepayrollsystem.UI.Models.EmployeeType.PartTimeEmployee;
 import com.cestar.employeepayrollsystem.UI.Models.MISC.IPrintable;
 import com.cestar.employeepayrollsystem.UI.Models.Vehicle.Vehicle;
 import com.cestar.employeepayrollsystem.UI.Models.VehicleType.Car;

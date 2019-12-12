@@ -2,16 +2,11 @@ package com.cestar.employeepayrollsystem.UI.Models.EmployeeType;
 
 import android.os.Build;
 import android.os.Parcel;
-import android.os.Parcelable;
 
 import androidx.annotation.RequiresApi;
-
 import com.cestar.employeepayrollsystem.UI.Models.Employee.EmployeeClass;
 import com.cestar.employeepayrollsystem.UI.Models.MISC.NameLengthException;
-import com.cestar.employeepayrollsystem.UI.Models.PartTimeSalaryType.CommissionBasedPartTimeEmployee;
-import com.cestar.employeepayrollsystem.UI.Models.PartTimeSalaryType.FixedBasedPartTimeEmployee;
-import com.cestar.employeepayrollsystem.UI.Models.VehicleType.Car;
-import com.cestar.employeepayrollsystem.UI.Models.VehicleType.MotorCycle;
+
 
 //Created by Ramanpreet Singh
 public abstract class PartTimeEmployee extends EmployeeClass {
