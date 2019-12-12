@@ -10,9 +10,6 @@ import android.os.Parcelable;
 
 import com.cestar.employeepayrollsystem.UI.Models.Other.IDispay;
 
-import java.time.LocalDate;
-
-
 /// This is the Vehicle class, containing the information of Employee's Vehicle.
 
 
