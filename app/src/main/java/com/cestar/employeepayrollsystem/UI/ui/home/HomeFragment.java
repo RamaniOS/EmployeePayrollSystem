@@ -9,9 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
 import com.cestar.employeepayrollsystem.R;
 import com.cestar.employeepayrollsystem.UI.Helper.Helper;
 import com.cestar.employeepayrollsystem.UI.Shared.EmployeeManager;

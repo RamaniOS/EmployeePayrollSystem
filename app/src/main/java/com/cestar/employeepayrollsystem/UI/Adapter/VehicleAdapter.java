@@ -8,11 +8,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.cestar.employeepayrollsystem.UI.Activities.EmployeeDetailActivity;
 import com.cestar.employeepayrollsystem.UI.Activities.VehicleDetailActivity;
 import com.cestar.employeepayrollsystem.UI.Models.Vehicle.Vehicle;
-
 import com.cestar.employeepayrollsystem.R;
 import java.util.List;
 
