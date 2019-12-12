@@ -9,12 +9,10 @@ import android.os.Parcelable;
 
 import androidx.annotation.RequiresApi;
 
-import com.cestar.employeepayrollsystem.UI.Models.Other.CalculateInsuranceStat;
 import com.cestar.employeepayrollsystem.UI.Models.Vehicle.Vehicle;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.time.LocalDate;
 
 public class MotorCycle extends Vehicle implements Parcelable {
 
